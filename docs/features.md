@@ -1,3 +1,7 @@
+<div id="arabic" dir="rtl">
+
+**[English Version](#english) | [النسخة العربية](#arabic)**
+
 # مميزات Pixify
 
 ## المميزات الأساسية
@@ -149,3 +153,165 @@
 
 [العودة إلى الصفحة الرئيسية](../README.md)
 
+---
+
+</div>
+
+---
+
+<div id="english" dir="ltr">
+
+**[English Version](#english) | [النسخة العربية](#arabic)**
+
+# Pixify Features
+
+## Core Features
+
+### Ultra-Fast Speed
+
+- **Parallel processing:** Process multiple images simultaneously
+- **Optimized memory:** Smart memory usage
+- **Optimized algorithms:** Using high-performance libvips
+
+### High Quality
+
+- **Quality preservation:** Smart algorithms maintain image quality
+- **Size reduction:** Significant reduction in file size
+- **Excellent results:** High visual quality with small size
+
+### Fully Offline
+
+- **No internet required:** All operations are local
+- **Complete privacy:** Your images stay on your device only
+- **Security:** No external connections
+
+### Easy to Use
+
+- **Simple interface:** Clear and easy command line
+- **No complex settings:** Works immediately after installation
+- **Comprehensive documentation:** Complete guide for everything
+
+---
+
+## Pixify Free Features
+
+### Basic Conversion
+
+- Convert JPG/PNG to WebP
+- Fixed quality 80 (perfect balance)
+- Automatic skip for existing files
+
+### Progress and Monitoring
+
+- Real-time progress bar
+- Comprehensive statistics report
+- Accurate ETA information
+
+### Performance
+
+- Advanced parallel processing
+- Optimized memory
+- Fast image processing
+
+---
+
+## Pixify Pro Features
+
+### Additional Formats
+
+- AVIF support (latest format)
+- Advanced SVG processing
+- Multi-format conversion
+
+### Advanced Customization
+
+- Adjustable dynamic quality
+- Advanced compression settings
+- Full control over processing
+
+### SVG Processing
+
+- Convert embedded images in SVG
+- Extract or merge images
+- Complete SVG optimization
+
+---
+
+## Quick Comparison
+
+| Feature | Free | Pro |
+|---------|------|-----|
+| WebP | ✅ | ✅ |
+| AVIF | ❌ | ✅ |
+| SVG | ❌ | ✅ |
+| Customizable quality | ❌ | ✅ |
+| SVG processing | ❌ | ✅ |
+| Advanced settings | ❌ | ✅ |
+
+---
+
+## Use Cases
+
+### For Developers
+
+- Optimize website images
+- Prepare images for applications
+- Batch image processing
+
+### For Designers
+
+- Convert image formats
+- Optimize file sizes
+- SVG processing
+
+### For Large Projects
+
+- Process thousands of images
+- Workflow automation
+- Performance optimization
+
+---
+
+## Performance
+
+### Speed
+
+- **Single image:** Less than a second
+- **100 images:** Less than a minute
+- **1000 images:** A few minutes
+
+### Size Reduction
+
+- **JPG → WebP:** Significant size reduction
+- **PNG → WebP:** Significant size reduction
+- **Average reduction:** Noticeable savings
+
+---
+
+## Security and Privacy
+
+### Fully Offline
+
+- No external connections
+- All data is local
+- No tracking or analytics
+
+### Open Source
+
+- Code available for review
+- Complete transparency
+- Extensible
+
+---
+
+## Support
+
+- **Documentation:** Comprehensive guide for everything
+- **Help:** Active community support
+- **Updates:** Regular updates
+
+---
+
+[Back to Home](../README.md)
+
+</div>

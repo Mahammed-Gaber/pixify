@@ -1,3 +1,7 @@
+<div id="arabic" dir="rtl">
+
+**[English Version](#english) | [النسخة العربية](#arabic)**
+
 # Pixify Free - التوثيق الكامل
 
 ## نظرة عامة
@@ -86,3 +90,102 @@ pixify-free --input /home/user/images --output /home/user/optimized
 
 [العودة إلى الصفحة الرئيسية](../README.md)
 
+---
+
+</div>
+
+---
+
+<div id="english" dir="ltr">
+
+**[English Version](#english) | [النسخة العربية](#arabic)**
+
+# Pixify Free - Complete Documentation
+
+## Overview
+
+Pixify Free is the free version of Pixify - a powerful tool for converting images to WebP at high speed.
+
+---
+
+## Installation
+
+### Requirements
+
+- **libvips** - Must be installed first
+- See [libvips Installation Guide](./install-libvips.md)
+
+### Download
+
+Download the latest version from [Releases](https://github.com/Mahammed-Gaber/pixify/releases).
+
+---
+
+## Usage
+
+### Basic Syntax
+
+```bash
+pixify-free -i <input_dir> -o <output_dir>
+```
+
+### Examples
+
+```bash
+# Simple example
+pixify-free -i ./photos -o ./webp
+
+# Using absolute paths
+pixify-free --input /home/user/images --output /home/user/optimized
+```
+
+---
+
+## Commands
+
+| Flag | Description | Required |
+|------|-------------|----------|
+| `-i`, `--input` | Input images directory | Yes |
+| `-o`, `--output` | Output directory for converted images | Yes |
+| `-h`, `--help` | Show help message | No |
+
+---
+
+## Features
+
+- Convert JPG/PNG to WebP
+- Fixed quality 80
+- Optimized parallel processing
+- Real-time progress bar
+- Comprehensive statistics report
+
+---
+
+## Supported Formats
+
+### Input
+- JPG / JPEG
+- PNG
+
+### Output
+- WebP (quality 80)
+
+---
+
+## Performance
+
+- **Speed:** Fast image processing
+- **Size Reduction:** Significant size reduction
+- **Memory:** Automatic smart management
+
+---
+
+## Troubleshooting
+
+See [libvips Installation Guide](./install-libvips.md) for common issues.
+
+---
+
+[Back to Home](../README.md)
+
+</div>

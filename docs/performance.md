@@ -1,3 +1,7 @@
+<div id="arabic" dir="rtl">
+
+**[English Version](#english) | [النسخة العربية](#arabic)**
+
 # الأداء والسرعة
 
 ## مقاييس الأداء
@@ -161,3 +165,177 @@ Pixify يوفر:
 
 [العودة إلى الصفحة الرئيسية](../README.md)
 
+---
+
+</div>
+
+---
+
+<div id="english" dir="ltr">
+
+**[English Version](#english) | [النسخة العربية](#arabic)**
+
+# Performance & Speed
+
+## Performance Metrics
+
+### Processing Speed
+
+Pixify is designed for speed. The following results on an average specification device:
+
+#### Single Image Processing
+
+- **JPG:** Ultra-fast
+- **PNG:** Ultra-fast
+- **Average:** Very fast processing
+
+#### Multiple Processing
+
+- **Small number of images:** Instant processing
+- **Medium number:** Fast processing
+- **Large number:** Efficient processing
+
+### Resource Usage
+
+#### Memory
+
+- **Maximum:** Optimized cache
+- **Actual usage:** Moderate memory usage
+- **Optimized:** Smart memory management
+
+#### Processor
+
+- **Parallel processing:** Full use of available cores
+- **Usage:** Moderate processor usage
+- **Efficiency:** Smart resource usage
+
+---
+
+## Performance Comparison
+
+### Versus Other Tools
+
+| Tool | Speed (100 images) | Size Reduction |
+|------|-------------------|-----------------|
+| Pixify Free | Ultra-fast | Significant |
+| Online Tools | Variable | Variable |
+
+### Reasons
+
+- **libvips:** C library optimized for speed
+- **Parallel processing:** Process multiple images simultaneously
+- **Optimized memory:** Smart cache for images
+
+---
+
+## Size Reduction
+
+### Real Results
+
+#### JPG → WebP
+
+- **Original size:** Medium
+- **WebP size:** Very small
+- **Reduction:** Significant
+
+#### PNG → WebP
+
+- **Original size:** Medium
+- **WebP size:** Very small
+- **Reduction:** Significant
+
+#### Average Reduction
+
+- **JPG:** Significant size reduction
+- **PNG:** Significant size reduction
+- **Overall average:** Noticeable savings
+
+---
+
+## Performance Improvements
+
+### Parallel Processing
+
+- **Multiple processing:** Process several images simultaneously
+- **High efficiency:** Full resource utilization
+- **Scalable:** Additional improvements in Pro
+
+### Memory Management
+
+- **Smart cache:** Temporary storage for processed images
+- **Automatic cleanup:** Automatic memory management
+- **Maximum limit:** Smart usage control
+
+### Optimized Algorithms
+
+- **libvips:** C library optimized for speed
+- **Smart compression:** Balance between size and quality
+- **Fast processing:** Advanced algorithms
+
+---
+
+## Tips for Best Performance
+
+### Recommended Settings
+
+- **Parallel processing:** Automatically optimized
+- **Memory:** Automatic smart management
+- **Quality:** 80 (default) - perfect balance
+
+### Additional Improvements
+
+- Use SSD for large images
+- Avoid processing very large images
+
+---
+
+## Real Metrics
+
+### Test on Large Number of Images
+
+```
+Total images: Large number
+Total before: Large size
+Total after:  Small size
+Saved:        Significant savings
+Time:         Short time
+```
+
+### Average Performance
+
+- **Speed:** Ultra-fast
+- **Reduction:** Significant size reduction
+- **Efficiency:** Excellent
+
+---
+
+## Resource Usage
+
+### Memory
+
+- **Minimum:** Low usage
+- **Normal usage:** Moderate usage
+- **Maximum:** Optimized usage
+
+### Processor
+
+- **Usage:** Moderate usage on multi-core processor
+- **Efficiency:** Smart use of available cores
+- **Responsiveness:** No impact on system
+
+---
+
+## Summary
+
+Pixify provides:
+
+- **Ultra-fast speed:** Faster than most tools
+- **High efficiency:** Smart resource usage
+- **Excellent results:** Significant size reduction
+- **Stability:** Consistent and reliable performance
+
+---
+
+[Back to Home](../README.md)
+
+</div>
