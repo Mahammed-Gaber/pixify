@@ -8,13 +8,7 @@ Pixify Free يتطلب مكتبة `libvips` لتشغيل عمليات تحويل
 
 **ملاحظة:** لـ Pixify Free، النسخة `web` من libvips كافية تماماً للتشغيل. تحتوي على دعم WebP المطلوب فقط.
 
-### الطريقة 1: Scoop
-
-```powershell
-scoop install vips
-```
-
-### الطريقة 2: التثبيت اليدوي
+### التثبيت اليدوي
 
 1. قم بتحميل أحدث إصدار من [libvips Windows builds](https://github.com/libvips/build-win64-mxe/releases)
 
