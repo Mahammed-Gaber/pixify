@@ -32,6 +32,12 @@ Pixify Free يتطلب مكتبة `libvips` لتشغيل عمليات تحويل
    - أضف `C:\vips\bin` إلى `Path` في "System variables"
    - أعد تشغيل Terminal
 
+### فيديو توضيحي
+
+📹 **شاهد هذا الفيديو** لمعرفة كيفية تثبيت libvips على Windows خطوة بخطوة:
+
+[![تثبيت libvips على Windows]](assets/install-libvips-windows.mp4)
+
 ### التحقق من التثبيت
 
 ```powershell
@@ -192,6 +198,12 @@ Pixify Free requires the `libvips` library to run image conversion operations. T
    - Open "System Properties" > "Environment Variables"
    - Add `C:\vips\bin` to `Path` in "System variables"
    - Restart Terminal
+
+### Video Tutorial
+
+📹 **Watch this video** to see how to install libvips on Windows step by step:
+
+[![Installing libvips on Windows]](assets/install-libvips-windows.mp4)
 
 ### Verify Installation
 
