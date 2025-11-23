@@ -36,7 +36,10 @@ Pixify Free يتطلب مكتبة `libvips` لتشغيل عمليات تحويل
 
 📹 **شاهد هذا الفيديو** لمعرفة كيفية تثبيت libvips على Windows خطوة بخطوة:
 
-[![تثبيت libvips على Windows]](assets/install-libvips-windows.mp4)
+<video width="100%" controls style="max-width: 800px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <source src="https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/assets/install-libvips-windows.mp4" type="video/mp4">
+  متصفحك لا يدعم عرض الفيديوهات. يمكنك <a href="https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/assets/install-libvips-windows.mp4">تحميل الفيديو مباشرة</a>.
+</video>
 
 ### التحقق من التثبيت
 
@@ -203,7 +206,10 @@ Pixify Free requires the `libvips` library to run image conversion operations. T
 
 📹 **Watch this video** to see how to install libvips on Windows step by step:
 
-[![Installing libvips on Windows]](assets/install-libvips-windows.mp4)
+<video width="100%" controls style="max-width: 800px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <source src="https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/assets/install-libvips-windows.mp4" type="video/mp4">
+  Your browser does not support video playback. You can <a href="https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/assets/install-libvips-windows.mp4">download the video directly</a>.
+</video>
 
 ### Verify Installation
 
