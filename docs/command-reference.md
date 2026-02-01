@@ -10,7 +10,8 @@
 
 | Your goal | Use | Command pattern |
 |-----------|-----|------------------|
-| Convert JPG/PNG to WebP, single folder | **Free** | `pixify-free -i <input> -o <output>` |
+| JPG/PNG → WebP, **one folder only**, no recursion or extra options | **Free** | `pixify-free -i <input> -o <output>` |
+| Convert to WebP (single folder **or** recursive / multi-folder; or you already use Pro) | **Pro** | `pixify-pro -i <input> -o <output>` (default format is webp) |
 | Multiple formats (AVIF, HEIC, TIFF…), recursive, keep structure | **Pro** | `pixify-pro -i <input> -o <output> -f <format> -r --keep-structure` |
 | Same format, just recompress (PNG/JPEG) | **Pro** | `pixify-pro -i <input> -o <output> -f <format> --mode optimize` |
 | Replace originals in place | **Pro** | `pixify-pro -i <folder> -o <any> --mode optimize --inplace` |
@@ -105,7 +106,7 @@
 | See version | `pixify-free -v` |
 | See help | `pixify-free -h` |
 
-Free has no format/mode/recursive options; one input folder, one output folder, WebP only (quality 80).
+Free has no format/mode/recursive options; one input folder, one output folder, WebP only (quality 80). **If you need WebP with recursion, multiple folders, or already use Pro,** use `pixify-pro -i <input> -o <output>` (default format is webp).
 
 ---
 
@@ -128,7 +129,8 @@ Free has no format/mode/recursive options; one input folder, one output folder, 
 
 | هدفك | الاستخدام | نمط الأمر |
 |------|-----------|-----------|
-| تحويل JPG/PNG إلى WebP، مجلد واحد | **Free** | `pixify-free -i <مدخل> -o <مخرج>` |
+| JPG/PNG → WebP، **مجلد واحد فقط**، بدون تكراري أو خيارات إضافية | **Free** | `pixify-free -i <مدخل> -o <مخرج>` |
+| تحويل إلى WebP (مجلد واحد **أو** تكراري/عدة مجلدات؛ أو أنك تستخدم Pro أصلاً) | **Pro** | `pixify-pro -i <مدخل> -o <مخرج>` (الافتراضي webp) |
 | صيغ متعددة (AVIF, HEIC, TIFF…)، تكراري، حفظ الهيكل | **Pro** | `pixify-pro -i <مدخل> -o <مخرج> -f <صيغة> -r --keep-structure` |
 | نفس الصيغة مع إعادة ضغط فقط (PNG/JPEG) | **Pro** | `pixify-pro -i <مدخل> -o <مخرج> -f <صيغة> --mode optimize` |
 | استبدال الملفات الأصلية في المكان | **Pro** | `pixify-pro -i <مجلد> -o <أي> --mode optimize --inplace` |
@@ -223,7 +225,7 @@ Free has no format/mode/recursive options; one input folder, one output folder, 
 | عرض الإصدار | `pixify-free -v` |
 | عرض المساعدة | `pixify-free -h` |
 
-في Free لا توجد خيارات صيغة/وضع/تكراري؛ مجلد مدخل واحد، مجلد مخرج واحد، WebP فقط (جودة 80).
+في Free لا توجد خيارات صيغة/وضع/تكراري؛ مجلد مدخل واحد، مجلد مخرج واحد، WebP فقط (جودة 80). **إذا احتجت WebP مع مسح تكراري أو مجلدات متعددة أو كنت تستخدم Pro أصلاً،** استخدم `pixify-pro -i <مدخل> -o <مخرج>` (الصيغة الافتراضية webp).
 
 ---
 

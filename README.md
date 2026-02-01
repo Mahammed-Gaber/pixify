@@ -56,8 +56,11 @@ brew install vips
 ### 2. تشغيل Pixify
 
 ```bash
-# Free: تحويل مجلد صور إلى WebP
+# Free: تحويل مجلد واحد إلى WebP (بدون خيارات إضافية)
 pixify-free -i ./photos -o ./webp
+
+# Pro: تحويل إلى WebP (مجلد واحد أو تكراري/عدة مجلدات — الافتراضي webp)
+pixify-pro -i ./photos -o ./webp
 
 # Pro: تحويل مع مسح تكراري وحفظ الهيكل
 pixify-pro -i ./photos -o ./output -r --keep-structure
@@ -172,8 +175,11 @@ brew install vips
 ### 2. Run Pixify
 
 ```bash
-# Free: convert a folder of images to WebP
+# Free: convert one folder to WebP (no extra options)
 pixify-free -i ./photos -o ./webp
+
+# Pro: convert to WebP (single folder or recursive/multi-folder — default is webp)
+pixify-pro -i ./photos -o ./webp
 
 # Pro: convert with recursive scan and keep folder structure
 pixify-pro -i ./photos -o ./output -r --keep-structure
