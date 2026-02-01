@@ -58,21 +58,30 @@
 
 ### صيغ إضافية
 
-- دعم AVIF (أحدث صيغة)
-- معالجة SVG متقدمة
-- تحويل متعدد الصيغ
+- **إدخال/إخراج:** WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP
+- اختيار تلقائي للصيغة (Auto) حسب الإدخال
+- جودة قابلة للتعديل (0–100)
 
-### تخصيص متقدم
+### أوضاع المعالجة
 
-- جودة ديناميكية قابلة للتعديل
-- إعدادات متقدمة للضغط
-- تحكم كامل في المعالجة
+- **Smart** (افتراضي) — تخطي ذكي وتحسين عند الحاجة
+- **Force** — إجبار التحويل للصيغة المحددة
+- **Optimize** — نفس الصيغة مع إعادة ضغط (PNG/JPEG)
 
-### معالجة SVG
+### معالجة المجلدات والملفات
 
-- تحويل الصور المضمنة في SVG
-- استخراج أو دمج الصور
-- تحسين SVG الكامل
+- **مسح تكراري** (`-r`, `--recursive`) — معالجة المجلدات الفرعية
+- **الحفاظ على هيكل المجلدات** (`--keep-structure`) في الإخراج
+- **حفظ بجانب الأصل** (`--inplace`) مع وضع Optimize
+- **مدخلات متعددة** (`-i` قابل للتكرار) — مثال: `-i assets -i public -o dist`
+- **كشف التعارض** — رفض التشغيل عند تعارض أسماء الملفات في الإخراج مع اقتراح الحل
+- **حماية Symlinks** — تخطي الملفات خارج شجرة الإدخال مع تحذير (عند استخدام `--keep-structure`)
+
+### الترخيص والاستخدام الاحترافي
+
+- **تفعيل ترخيص** مع رسائل واضحة (حد الأجهزة، انتهاء الصلاحية، إلغاء الترخيص)
+- **رموز API لـ CI/CD و Docker:** تُخزَّن الرموز بشكل آمن (هاش)؛ الرمز الكامل يُعرض مرة واحدة فقط عند الإنشاء ويجب حفظه في مكان آمن. في لوحة التحكم تظهر الرموز بشكل مُقنَّع (مثل pix_****abcd)، مع اسم مستعار وانتهاء اختياري؛ ويمكن إلغاء الرمز من لوحة التحكم.
+- **عمال تلقائي** — استخدام كامل لقوة المعالج (NumCPU)
 
 ---
 
@@ -81,11 +90,15 @@
 | الميزة | Free | Pro |
 |--------|------|-----|
 | WebP | ✅ | ✅ |
-| AVIF | ❌ | ✅ |
-| SVG | ❌ | ✅ |
+| JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP | ❌ | ✅ |
 | جودة قابلة للتخصيص | ❌ | ✅ |
-| معالجة SVG | ❌ | ✅ |
-| إعدادات متقدمة | ❌ | ✅ |
+| مسح تكراري (`-r`) | ❌ | ✅ |
+| الحفاظ على هيكل المجلدات | ❌ | ✅ |
+| حفظ بجانب الأصل (`--inplace`) | ❌ | ✅ |
+| مدخلات متعددة (`-i` متكرر) | ❌ | ✅ |
+| كشف التعارض عند الإخراج | ❌ | ✅ |
+| أوضاع Smart / Force / Optimize | Smart فقط | ✅ |
+| تفعيل ترخيص + توكن CI/CD | ❌ | ✅ |
 
 ---
 
@@ -99,9 +112,9 @@
 
 ### للمصممين
 
-- تحويل صيغ الصور
+- تحويل صيغ الصور (WebP, AVIF, HEIC, TIFF, إلخ)
 - تحسين حجم الملفات
-- معالجة SVG
+- معالجة متعددة الصيغ (Pro)
 
 ### للمشاريع الكبيرة
 
@@ -135,11 +148,11 @@
 - جميع البيانات محلية
 - لا توجد تتبع أو تحليلات
 
-### مفتوح المصدر
+### برمجيات احتكارية
 
-- الكود متاح للمراجعة
-- شفافية كاملة
-- قابل للتطوير
+- Pixify (المجاني والاحترافي) مغلق المصدر — لا يوفّر كود المصدر للجمهور
+- الترخيص يحدد شروط الاستخدام؛ راجع [الشروط](https://getpixify.com/terms) و [EULA](https://getpixify.com/eula)
+- التحديثات والدعم وفق الخطة والترخيص
 
 ---
 
@@ -219,21 +232,30 @@
 
 ### Additional Formats
 
-- AVIF support (latest format)
-- Advanced SVG processing
-- Multi-format conversion
+- **Input/Output:** WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP
+- Auto format selection based on input
+- Adjustable quality (0–100)
 
-### Advanced Customization
+### Processing Modes
 
-- Adjustable dynamic quality
-- Advanced compression settings
-- Full control over processing
+- **Smart** (default) — Smart skip and optimize when beneficial
+- **Force** — Force conversion to target format
+- **Optimize** — Same format with recompression (PNG/JPEG)
 
-### SVG Processing
+### Folder & File Handling
 
-- Convert embedded images in SVG
-- Extract or merge images
-- Complete SVG optimization
+- **Recursive scan** (`-r`, `--recursive`) — process subdirectories
+- **Keep folder structure** (`--keep-structure`) in output
+- **Save next to original** (`--inplace`) with Optimize mode
+- **Multiple inputs** (`-i` repeatable) — e.g. `-i assets -i public -o dist`
+- **Collision detection** — reject when output filenames would clash, with clear guidance
+- **Symlink protection** — skip files outside input tree with warning (when using `--keep-structure`)
+
+### Licensing & Pro Use
+
+- **License activation** with clear messages (machine limit, expired, revoked)
+- **API tokens for CI/CD & Docker:** Tokens are stored securely (hashed); the full token is shown only once at creation and must be stored safely. The dashboard shows tokens in masked form (e.g. pix_****abcd), with alias and optional expiry; tokens can be revoked from the dashboard.
+- **Auto workers** — full CPU usage (NumCPU)
 
 ---
 
@@ -242,11 +264,15 @@
 | Feature | Free | Pro |
 |---------|------|-----|
 | WebP | ✅ | ✅ |
-| AVIF | ❌ | ✅ |
-| SVG | ❌ | ✅ |
+| JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP | ❌ | ✅ |
 | Customizable quality | ❌ | ✅ |
-| SVG processing | ❌ | ✅ |
-| Advanced settings | ❌ | ✅ |
+| Recursive scan (`-r`) | ❌ | ✅ |
+| Keep folder structure | ❌ | ✅ |
+| Save next to original (`--inplace`) | ❌ | ✅ |
+| Multiple inputs (`-i` repeatable) | ❌ | ✅ |
+| Output collision detection | ❌ | ✅ |
+| Smart / Force / Optimize modes | Smart only | ✅ |
+| License activation + CI/CD token | ❌ | ✅ |
 
 ---
 
@@ -260,9 +286,9 @@
 
 ### For Designers
 
-- Convert image formats
+- Convert image formats (WebP, AVIF, HEIC, TIFF, etc.)
 - Optimize file sizes
-- SVG processing
+- Multi-format processing (Pro)
 
 ### For Large Projects
 
@@ -296,11 +322,11 @@
 - All data is local
 - No tracking or analytics
 
-### Open Source
+### Proprietary Software
 
-- Code available for review
-- Complete transparency
-- Extensible
+- Pixify (Free and Pro) is closed source — source code is not publicly available
+- License defines terms of use; see [Terms](https://getpixify.com/terms) and [EULA](https://getpixify.com/eula)
+- Updates and support according to plan and license
 
 ---
 
