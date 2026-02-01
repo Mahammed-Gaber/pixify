@@ -2,11 +2,13 @@
 
 **[English Version](#english) | [النسخة العربية](#arabic)**
 
-# Pixify Free - التوثيق الكامل
+# Pixify Free — التوثيق المختصر
 
 ## نظرة عامة
 
-Pixify Free هو النسخة المجانية من Pixify - أداة قوية لتحويل الصور إلى WebP بسرعة فائقة.
+Pixify Free هو النسخة المجانية من Pixify: تحويل **JPG و PNG** إلى **WebP** بجودة ثابتة (80)، مجلد مدخل واحد، بدون إنترنت.
+
+**للأمر المناسب بسرعة:** راجع [مرجع الأوامر](command-reference.md).
 
 ---
 
@@ -86,9 +88,12 @@ pixify-free --input /home/user/images --output /home/user/optimized
 
 ## استكشاف الأخطاء
 
-راجع [دليل تثبيت libvips](./install-libvips.md) للمشاكل الشائعة.
+راجع [دليل تثبيت libvips](install-libvips.md) للمشاكل الشائعة.
 
 ---
+
+**دليل الاستخدام الكامل:** [Pixify Free — دليل الاستخدام](free/usage-guide.md)  
+**مرجع الأوامر:** [command-reference.md](command-reference.md)
 
 [العودة إلى الصفحة الرئيسية](../README.md)
 
@@ -102,11 +107,13 @@ pixify-free --input /home/user/images --output /home/user/optimized
 
 **[English Version](#english) | [النسخة العربية](#arabic)**
 
-# Pixify Free - Complete Documentation
+# Pixify Free — Short Reference
 
 ## Overview
 
-Pixify Free is the free version of Pixify - a powerful tool for converting images to WebP at high speed.
+Pixify Free is the free edition: convert **JPG and PNG** to **WebP** at fixed quality (80), single input folder, fully offline.
+
+**For the right command quickly:** see [Command Reference](command-reference.md).
 
 ---
 
@@ -186,9 +193,12 @@ pixify-free --input /home/user/images --output /home/user/optimized
 
 ## Troubleshooting
 
-See [libvips Installation Guide](./install-libvips.md) for common issues.
+See [libvips Installation Guide](install-libvips.md) for common issues.
 
 ---
+
+**Full usage guide:** [Pixify Free — Usage guide](free/usage-guide.md)  
+**Command reference:** [command-reference.md](command-reference.md)
 
 [Back to Home](../README.md)
 

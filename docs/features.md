@@ -4,6 +4,10 @@
 
 # مميزات Pixify
 
+**للحصول على الأمر المناسب بسرعة:** راجع [مرجع الأوامر](command-reference.md) — «أريد أن…» → الأمر، وخيارات Free و Pro والتوليفات الصحيحة.
+
+---
+
 ## المميزات الأساسية
 
 ### سرعة فائقة
@@ -156,11 +160,11 @@
 
 ---
 
-## الدعم
+## الدعم والمراجع
 
-- **التوثيق:** دليل شامل لكل شيء
-- **المساعدة:** دعم مجتمعي نشط
-- **التحديثات:** تحديثات منتظمة
+- **مرجع الأوامر:** [command-reference.md](command-reference.md) — مساعد الأوامر لـ Free و Pro
+- **التوثيق:** [فهرس التوثيق](README.md)
+- **الدعم:** [GitHub Issues](https://github.com/Mahammed-Gaber/pixify/issues) | [getpixify.com](https://getpixify.com)
 
 ---
 
@@ -177,6 +181,10 @@
 **[English Version](#english) | [النسخة العربية](#arabic)**
 
 # Pixify Features
+
+**For the right command quickly:** see [Command Reference](command-reference.md) — “I want to…” → command, Free and Pro options, and valid combinations.
+
+---
 
 ## Core Features
 
@@ -330,11 +338,11 @@
 
 ---
 
-## Support
+## Support and references
 
-- **Documentation:** Comprehensive guide for everything
-- **Help:** Active community support
-- **Updates:** Regular updates
+- **Command reference:** [command-reference.md](command-reference.md) — Command assistant for Free and Pro
+- **Documentation:** [Documentation index](README.md)
+- **Support:** [GitHub Issues](https://github.com/Mahammed-Gaber/pixify/issues) | [getpixify.com](https://getpixify.com)
 
 ---
 
