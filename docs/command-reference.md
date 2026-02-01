@@ -1,0 +1,237 @@
+# Pixify Command Reference — مساعد الأوامر
+
+**[English](#english) | [العربية](#arabic)**
+
+---
+
+<div id="english">
+
+## Quick decision: Free or Pro?
+
+| Your goal | Use | Command pattern |
+|-----------|-----|------------------|
+| Convert JPG/PNG to WebP, single folder | **Free** | `pixify-free -i <input> -o <output>` |
+| Multiple formats (AVIF, HEIC, TIFF…), recursive, keep structure | **Pro** | `pixify-pro -i <input> -o <output> -f <format> -r --keep-structure` |
+| Same format, just recompress (PNG/JPEG) | **Pro** | `pixify-pro -i <input> -o <output> -f <format> --mode optimize` |
+| Replace originals in place | **Pro** | `pixify-pro -i <folder> -o <any> --mode optimize --inplace` |
+| Multiple input folders → one output | **Pro** | `pixify-pro -i <dir1> -i <dir2> -o <output>` |
+| CI/CD, Docker, headless (no GUI) | **Pro** | Activate once, then use API token from dashboard; run with `PIXIFY_TOKEN=<token>` |
+
+---
+
+## Pixify Free — Options at a glance
+
+| Option | Short | Long | Required? | Description |
+|--------|-------|------|------------|-------------|
+| Input directory | `-i` | `--input` | **Yes** | Single folder containing JPG/PNG (and optionally WebP; WebP is skipped). |
+| Output directory | `-o` | `--output` | **Yes** | Where to write WebP files. |
+| Help | `-h` | `--help` | No | Show usage. |
+| Version | `-v` | `--version` | No | Show version. |
+
+**Fixed behavior (no flags):** Output format = WebP, quality = 80, Smart mode, auto workers, skip existing files. One input folder only; no recursive scan.
+
+**Valid combinations:** The only variable is input path and output path. All other behavior is fixed.
+
+| Scenario | Command |
+|----------|---------|
+| Basic convert | `pixify-free -i ./photos -o ./webp` |
+| Absolute paths | `pixify-free -i /path/to/images -o /path/to/output` |
+
+---
+
+## Pixify Pro — Options at a glance
+
+| Option | Short | Long | Required? | Compatible with | Description |
+|--------|-------|------|------------|-----------------|-------------|
+| Input directory(s) | `-i` | `--input` | **Yes** (at least one) | All | Can be repeated: `-i assets -i public`. |
+| Output directory | `-o` | `--output` | **Yes** (unless `--inplace`) | All | Output folder. Ignored when `--inplace` is set. |
+| Format | `-f` | `--format` | No (default: webp) | All | `webp`, `jpeg`, `png`, `avif`, `heic`, `heif`, `tiff`, `gif`, `bmp`, `auto`. |
+| Mode | — | `--mode` | No (default: smart) | All | `smart`, `force`, `optimize`. |
+| Quality | `-q` | `--quality` | No (default: 80) | All | 10–100. |
+| Recursive | `-r` | `--recursive` | No | All | Process subdirectories. |
+| Keep structure | — | `--keep-structure` | No (default: true) | All | Preserve folder structure in output. |
+| In-place | — | `--inplace` | No | **Only with `--mode optimize`** | Write next to originals; `-o` ignored. |
+| Auto output format | — | `--auto-output` | No | All | Auto-select output format from input. |
+| Keep metadata | — | `--keep-metadata` | No | **Only with `--mode optimize`** | Preserve EXIF/metadata. |
+| Activate license | — | `--activate` | No | With `--license-key` | Activate Pro license. |
+| License key | — | `--license-key` | For activation | With `--activate` | Your Pro license key. |
+| Version | `-v` | `--version` | No | — | Show version and license status. |
+| Help | `-h` | `--help` | No | — | Show full help. |
+
+---
+
+## Pro: Valid combinations (what works with what)
+
+| Combination | Valid? | Notes |
+|-------------|--------|-------|
+| `--inplace` | ✅ Only with `--mode optimize` | In-place overwrites next to originals. |
+| `--keep-metadata` | ✅ Only with `--mode optimize` | Preserves EXIF/GPS etc. |
+| `-i dir1 -i dir2 -o out` | ✅ | Multiple inputs → one output (structure preserved with `--keep-structure`). |
+| `-f auto` or `--auto-output` | ✅ | Output format chosen per image from input format. |
+| `-r` (recursive) | ✅ | Use with any mode/format. |
+| `--mode optimize` without `-f` | ✅ | Format preserved from input (e.g. PNG→PNG, JPEG→JPEG). |
+| `--mode force` | ✅ | Converts every image to `-f` format. |
+| `--mode smart` | ✅ | Skips or optimizes based on rules (see [Pro usage guide](pro/usage-guide.md)). |
+
+**Invalid / not supported:**
+
+- `--inplace` without `--mode optimize` → Error.
+- `--keep-metadata` without `--mode optimize` → Error.
+- Token generation from CLI → Not available; create tokens only from the [dashboard](https://getpixify.com). Use `PIXIFY_TOKEN` in CI/Docker.
+
+---
+
+## “I want to…” → Command (Pro)
+
+| I want to… | Command |
+|------------|---------|
+| Convert everything to WebP (default) | `pixify-pro -i ./images -o ./output` |
+| Convert to AVIF with recursion | `pixify-pro -i ./photos -o ./avif -f avif -r` |
+| Keep folder structure | `pixify-pro -i ./photos -o ./out -r --keep-structure` (default is true) |
+| Recompress PNG/JPEG in place (no new folder) | `pixify-pro -i ./images -o ./dummy --mode optimize --inplace` |
+| Multiple folders → one output | `pixify-pro -i ./assets -i ./public -o ./dist -f webp` |
+| Auto format per image | `pixify-pro -i ./mixed -o ./out -f auto` |
+| Best quality, minimal loss | `pixify-pro -i ./images -o ./out -q 95` |
+| Activate license | `pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX` |
+| Use in CI/Docker | Create token in dashboard → set `PIXIFY_TOKEN` → run `pixify-pro -i ... -o ...` as usual. |
+
+---
+
+## Free: “I want to…” → Command
+
+| I want to… | Command |
+|------------|---------|
+| Convert JPG/PNG in a folder to WebP | `pixify-free -i ./photos -o ./webp` |
+| See version | `pixify-free -v` |
+| See help | `pixify-free -h` |
+
+Free has no format/mode/recursive options; one input folder, one output folder, WebP only (quality 80).
+
+---
+
+## See also
+
+- [Pixify Free — Full usage guide](free/usage-guide.md)
+- [Pixify Pro — Full usage guide](pro/usage-guide.md)
+- [Install libvips](install-libvips.md) (required before first run)
+- [Features overview](features.md)
+
+---
+
+</div>
+
+---
+
+<div id="arabic" dir="rtl">
+
+## اختيار سريع: Free أم Pro؟
+
+| هدفك | الاستخدام | نمط الأمر |
+|------|-----------|-----------|
+| تحويل JPG/PNG إلى WebP، مجلد واحد | **Free** | `pixify-free -i <مدخل> -o <مخرج>` |
+| صيغ متعددة (AVIF, HEIC, TIFF…)، تكراري، حفظ الهيكل | **Pro** | `pixify-pro -i <مدخل> -o <مخرج> -f <صيغة> -r --keep-structure` |
+| نفس الصيغة مع إعادة ضغط فقط (PNG/JPEG) | **Pro** | `pixify-pro -i <مدخل> -o <مخرج> -f <صيغة> --mode optimize` |
+| استبدال الملفات الأصلية في المكان | **Pro** | `pixify-pro -i <مجلد> -o <أي> --mode optimize --inplace` |
+| مجلدات مدخل متعددة → مخرج واحد | **Pro** | `pixify-pro -i <مجلد1> -i <مجلد2> -o <مخرج>` |
+| CI/CD أو Docker أو بدون واجهة | **Pro** | تفعيل مرة واحدة، ثم استخدام رمز API من لوحة التحكم؛ التشغيل مع `PIXIFY_TOKEN=<الرمز>` |
+
+---
+
+## Pixify Free — الخيارات في لمحة
+
+| الخيار | Short | Long | مطلوب؟ | الوصف |
+|--------|-------|------|--------|-------|
+| مجلد المدخل | `-i` | `--input` | **نعم** | مجلد واحد فيه JPG/PNG (واختيارياً WebP؛ يتم تخطي WebP). |
+| مجلد المخرج | `-o` | `--output` | **نعم** | مكان كتابة ملفات WebP. |
+| المساعدة | `-h` | `--help` | لا | عرض الاستخدام. |
+| الإصدار | `-v` | `--version` | لا | عرض الإصدار. |
+
+**سلوك ثابت (بدون أعلام):** صيغة المخرج = WebP، الجودة = 80، وضع Smart، عمال تلقائي، تخطي الملفات الموجودة. مجلد مدخل واحد فقط؛ لا مسح تكراري.
+
+**التوليفات الصحيحة:** المتغير الوحيد هو مسار المدخل والمخرج. باقي السلوك ثابت.
+
+| السيناريو | الأمر |
+|-----------|-------|
+| تحويل أساسي | `pixify-free -i ./photos -o ./webp` |
+| مسارات مطلقة | `pixify-free -i /path/to/images -o /path/to/output` |
+
+---
+
+## Pixify Pro — الخيارات في لمحة
+
+| الخيار | Short | Long | مطلوب؟ | متوافق مع | الوصف |
+|--------|-------|------|--------|-----------|-------|
+| مجلد/مجلات المدخل | `-i` | `--input` | **نعم** (واحد على الأقل) | الكل | قابل للتكرار: `-i assets -i public`. |
+| مجلد المخرج | `-o` | `--output` | **نعم** (إلا مع `--inplace`) | الكل | مجلد المخرج. يُتجاهل مع `--inplace`. |
+| الصيغة | `-f` | `--format` | لا (افتراضي: webp) | الكل | `webp`, `jpeg`, `png`, `avif`, `heic`, `heif`, `tiff`, `gif`, `bmp`, `auto`. |
+| الوضع | — | `--mode` | لا (افتراضي: smart) | الكل | `smart`, `force`, `optimize`. |
+| الجودة | `-q` | `--quality` | لا (افتراضي: 80) | الكل | 10–100. |
+| تكراري | `-r` | `--recursive` | لا | الكل | معالجة المجلدات الفرعية. |
+| الحفاظ على الهيكل | — | `--keep-structure` | لا (افتراضي: true) | الكل | الحفاظ على هيكل المجلدات في المخرج. |
+| في المكان | — | `--inplace` | لا | **فقط مع `--mode optimize`** | الكتابة بجانب الأصل؛ يُتجاهل `-o`. |
+| صيغة مخرج تلقائية | — | `--auto-output` | لا | الكل | اختيار صيغة المخرج تلقائياً من المدخل. |
+| الاحتفاظ بالبيانات الوصفية | — | `--keep-metadata` | لا | **فقط مع `--mode optimize`** | الاحتفاظ بـ EXIF والبيانات الوصفية. |
+| تفعيل الترخيص | — | `--activate` | لا | مع `--license-key` | تفعيل ترخيص Pro. |
+| مفتاح الترخيص | — | `--license-key` | للتفعيل | مع `--activate` | مفتاح ترخيص Pro. |
+| الإصدار | `-v` | `--version` | لا | — | عرض الإصدار وحالة الترخيص. |
+| المساعدة | `-h` | `--help` | لا | — | عرض المساعدة الكاملة. |
+
+---
+
+## Pro: توليفات صحيحة (ما الذي يعمل مع ماذا)
+
+| التوليفة | صالحة؟ | ملاحظات |
+|----------|--------|---------|
+| `--inplace` | ✅ فقط مع `--mode optimize` | الكتابة في المكان بجانب الملفات الأصلية. |
+| `--keep-metadata` | ✅ فقط مع `--mode optimize` | الاحتفاظ بـ EXIF/GPS وغيرها. |
+| `-i dir1 -i dir2 -o out` | ✅ | مدخلات متعددة → مخرج واحد (الهيكل يُحفظ مع `--keep-structure`). |
+| `-f auto` أو `--auto-output` | ✅ | اختيار صيغة المخرج لكل صورة من المدخل. |
+| `-r` (تكراري) | ✅ | مع أي وضع/صيغة. |
+| `--mode optimize` بدون `-f` | ✅ | الحفاظ على صيغة المدخل (مثلاً PNG→PNG، JPEG→JPEG). |
+| `--mode force` | ✅ | تحويل كل صورة إلى صيغة `-f`. |
+| `--mode smart` | ✅ | تخطي أو تحسين حسب القواعد (انظر [دليل Pro](pro/usage-guide.md)). |
+
+**غير مدعوم:**
+
+- `--inplace` بدون `--mode optimize` → خطأ.
+- `--keep-metadata` بدون `--mode optimize` → خطأ.
+- توليد الرمز من سطر الأوامر → غير متاح؛ إنشاء الرموز من [لوحة التحكم](https://getpixify.com) فقط. استخدم `PIXIFY_TOKEN` في CI/Docker.
+
+---
+
+## «أريد أن…» → الأمر (Pro)
+
+| أريد أن… | الأمر |
+|----------|-------|
+| تحويل كل شيء إلى WebP (افتراضي) | `pixify-pro -i ./images -o ./output` |
+| تحويل إلى AVIF مع مسح تكراري | `pixify-pro -i ./photos -o ./avif -f avif -r` |
+| الحفاظ على هيكل المجلدات | `pixify-pro -i ./photos -o ./out -r --keep-structure` (الافتراضي true) |
+| إعادة ضغط PNG/JPEG في المكان (بدون مجلد جديد) | `pixify-pro -i ./images -o ./dummy --mode optimize --inplace` |
+| مجلدات متعددة → مخرج واحد | `pixify-pro -i ./assets -i ./public -o ./dist -f webp` |
+| صيغة تلقائية حسب الصورة | `pixify-pro -i ./mixed -o ./out -f auto` |
+| أعلى جودة مع أقل فقد | `pixify-pro -i ./images -o ./out -q 95` |
+| تفعيل الترخيص | `pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX` |
+| الاستخدام في CI/Docker | إنشاء الرمز من لوحة التحكم → تعيين `PIXIFY_TOKEN` → تشغيل `pixify-pro -i ... -o ...` كالمعتاد. |
+
+---
+
+## Free: «أريد أن…» → الأمر
+
+| أريد أن… | الأمر |
+|----------|-------|
+| تحويل JPG/PNG في مجلد إلى WebP | `pixify-free -i ./photos -o ./webp` |
+| عرض الإصدار | `pixify-free -v` |
+| عرض المساعدة | `pixify-free -h` |
+
+في Free لا توجد خيارات صيغة/وضع/تكراري؛ مجلد مدخل واحد، مجلد مخرج واحد، WebP فقط (جودة 80).
+
+---
+
+## اطلع أيضاً
+
+- [Pixify Free — دليل الاستخدام الكامل](free/usage-guide.md)
+- [Pixify Pro — دليل الاستخدام الكامل](pro/usage-guide.md)
+- [تثبيت libvips](install-libvips.md) (مطلوب قبل أول تشغيل)
+- [نظرة عامة على المميزات](features.md)
+
+</div>
