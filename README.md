@@ -2,9 +2,17 @@
 
 **[English Version](#english) | [النسخة العربية](#arabic)**
 
+<div align="center">
+
+![Pixify Cover](assets/pixify-cover.png)
+
+</div>
+
 # Pixify
 
 **Pixify** هو محوّل صور عالي الأداء مبني على libvips، مصمم لمعالجة آلاف الصور بسرعة وبجودة ثابتة، مع دعم كامل للعمل Offline وعلى جميع الأنظمة.
+
+**الإصدار الأول** يشمل **Pixify Free** و **Pixify Pro** معاً — يمكنك التحميل والبدء فوراً.
 
 ---
 
@@ -25,23 +33,49 @@
 نسخة مجانية بالكامل مع تحويل غير محدود للصور.
 
 **الإمكانيات:**
-- **المدخل:** JPG / PNG
+- **المدخل:** JPG / PNG (مجلد واحد)
 - **المخرج:** WebP (Q80)
 - **تخطي تلقائي** للملفات الموجودة
 - **تقرير نهائي شامل**
 - **يعمل بالكامل Offline**
+- معالجة متوازية محسّنة (عدد عمال تلقائي)
 
 ---
 
-## Pro (قريباً)
+## Pixify Pro
 
-نسخة احترافية قادمة مع ميزات إضافية:
+نسخة احترافية متاحة الآن مع صيغ إضافية وتحكم كامل.
 
-- AVIF, SVG, HEIF support
-- Adjustable quality
-- Advanced optimizations
+**الإمكانيات:**
+- **صيغ الإدخال/الإخراج:** WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP
+- **جودة قابلة للتعديل** (0–100)
+- **وضع المعالجة:** Smart (افتراضي), Force, Optimize
+- **مسح تكراري** (`-r`, `--recursive`) — معالجة المجلدات الفرعية
+- **الحفاظ على هيكل المجلدات** (`--keep-structure`) في الإخراج
+- **حفظ بجانب الأصل** (`--inplace`) مع وضع Optimize
+- **مدخلات متعددة** (`-i` قابل للتكرار) — مثال: `-i assets -i public -o dist`
+- **كشف التعارض** — رفض التشغيل عند تعارض أسماء الملفات في الإخراج مع اقتراح الحل
+- **تفعيل ترخيص** مع رسائل واضحة (حد الأجهزة، انتهاء الصلاحية، إلخ)
+- **رموز API لـ CI/CD و Docker** — تُخزَّن بشكل آمن (هاش)، ويُعرض الرمز الكامل مرة واحدة فقط عند الإنشاء؛ في لوحة التحكم يظهر الرمز مُقنَّعاً (مثل pix_****abcd)
+- **عمال تلقائي** — استخدام كامل لقوة المعالج (NumCPU)
 
-**ملاحظة:** النسخة الاحترافية ستكون متاحة قريباً. يمكنك متابعة التحديثات من خلال هذا الـ repository.
+**للحصول على Pro:** [getpixify.com](https://getpixify.com) | [الأسعار](https://getpixify.com/pricing)
+
+### مقارنة سريعة: Free و Pro
+
+| الميزة | Free | Pro |
+|--------|------|-----|
+| صيغ الإدخال | JPG, PNG | WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP |
+| صيغ الإخراج | WebP فقط | جميع الصيغ أعلاه + Auto |
+| الجودة | ثابتة (80) | قابلة للتعديل (0–100) |
+| مسح تكراري (`-r`) | ❌ | ✅ |
+| الحفاظ على هيكل المجلدات | ❌ | ✅ (`--keep-structure`) |
+| حفظ بجانب الأصل (`--inplace`) | ❌ | ✅ (مع Optimize) |
+| مدخلات متعددة (`-i` متكرر) | ❌ | ✅ |
+| كشف التعارض عند الإخراج | ❌ | ✅ |
+| وضع المعالجة (Smart / Force / Optimize) | Smart فقط | ✅ |
+| تفعيل ترخيص + توكن CI/CD | ❌ | ✅ |
+| العمال | تلقائي (نصف الأنوية) | تلقائي (كل الأنوية) |
 
 ---
 
@@ -81,14 +115,18 @@ brew install vips
 ### 2. استخدام Pixify
 
 ```bash
-# تحويل صور
+# تحويل صور (Free)
 pixify-free -i ./photos -o ./webp
 
-# استخدام الأسماء الكاملة
-pixify-free --input /path/to/images --output /path/to/output
+# Pro: مسح تكراري + الحفاظ على الهيكل
+pixify-pro -i ./photos -o ./output -r --keep-structure
+
+# Pro: مدخلات متعددة
+pixify-pro -i ./assets -i ./public -o ./dist -f webp
 
 # عرض المساعدة
 pixify-free --help
+pixify-pro --help
 ```
 
 ---
@@ -135,10 +173,11 @@ Saved:        102.2 MB (84.8%)
 ## Documentation
 
 - [دليل تثبيت libvips](./docs/install-libvips.md) - تعليمات مفصلة لكل نظام
-- [مميزات Pixify](./docs/features.md) - جميع المميزات بالتفصيل
+- [مميزات Pixify](./docs/features.md) - جميع المميزات بالتفصيل (Free و Pro)
 - [الأداء والسرعة](./docs/performance.md) - مقاييس الأداء والنتائج
 - [Showcase وأمثلة](./docs/showcase.md) - أمثلة حقيقية ونتائج
-- [Pixify Free Documentation](./docs/free.md) - توثيق النسخة المجانية
+- [Pixify Free](./docs/free.md) - توثيق النسخة المجانية
+- [Pixify Pro - دليل الاستخدام](./docs/pro/usage-guide.md) - أوامر Pro والمودات والتفعيل والتوكن
 - [سجل التغييرات](./docs/changelog.md) - تاريخ الإصدارات
 
 ---
@@ -167,9 +206,17 @@ Saved:        102.2 MB (84.8%)
 
 **[English Version](#english) | [النسخة العربية](#arabic)**
 
+<div align="center">
+
+![Pixify Cover](assets/pixify-cover.png)
+
+</div>
+
 # Pixify
 
 **Pixify** is a high-performance image converter built on libvips, designed to process thousands of images quickly with consistent quality, with full support for offline operation on all platforms.
+
+**First release** includes both **Pixify Free** and **Pixify Pro** — download and get started right away.
 
 ---
 
@@ -190,23 +237,49 @@ Saved:        102.2 MB (84.8%)
 Fully free version with unlimited image conversions.
 
 **Capabilities:**
-- **Input:** JPG / PNG
+- **Input:** JPG / PNG (single directory)
 - **Output:** WebP (Q80)
 - **Auto-skip** existing files
 - **Detailed finishing report**
 - **Fully offline operation**
+- Optimized parallel processing (auto workers)
 
 ---
 
-## Pro (Coming Soon)
+## Pixify Pro
 
-Professional version coming soon with additional features:
+Professional version available now with extra formats and full control.
 
-- AVIF, SVG, HEIF support
-- Adjustable quality
-- Advanced optimizations
+**Capabilities:**
+- **Input/Output formats:** WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP
+- **Adjustable quality** (0–100)
+- **Processing modes:** Smart (default), Force, Optimize
+- **Recursive scan** (`-r`, `--recursive`) — process subdirectories
+- **Keep folder structure** (`--keep-structure`) in output
+- **Save next to original** (`--inplace`) with Optimize mode
+- **Multiple inputs** (`-i` repeatable) — e.g. `-i assets -i public -o dist`
+- **Collision detection** — reject when output filenames would clash, with clear guidance
+- **License activation** with clear messages (machine limit, expired, etc.)
+- **API tokens for CI/CD & Docker** — stored securely (hashed); the full token is shown only once at creation; the dashboard displays a masked form (e.g. pix_****abcd)
+- **Auto workers** — full CPU usage (NumCPU)
 
-**Note:** The professional version will be available soon. You can follow updates through this repository.
+**Get Pro:** [getpixify.com](https://getpixify.com) | [Pricing](https://getpixify.com/pricing)
+
+### Quick comparison: Free vs Pro
+
+| Feature | Free | Pro |
+|--------|------|-----|
+| Input formats | JPG, PNG | WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP |
+| Output formats | WebP only | All above + Auto |
+| Quality | Fixed (80) | Adjustable (0–100) |
+| Recursive scan (`-r`) | ❌ | ✅ |
+| Keep folder structure | ❌ | ✅ (`--keep-structure`) |
+| Save next to original (`--inplace`) | ❌ | ✅ (with Optimize) |
+| Multiple inputs (`-i` repeatable) | ❌ | ✅ |
+| Output collision detection | ❌ | ✅ |
+| Processing modes (Smart / Force / Optimize) | Smart only | ✅ |
+| License activation + CI/CD token | ❌ | ✅ |
+| Workers | Auto (half cores) | Auto (all cores) |
 
 ---
 
@@ -246,14 +319,18 @@ brew install vips
 ### 2. Use Pixify
 
 ```bash
-# Convert images
+# Convert images (Free)
 pixify-free -i ./photos -o ./webp
 
-# Use full flag names
-pixify-free --input /path/to/images --output /path/to/output
+# Pro: recursive + keep structure
+pixify-pro -i ./photos -o ./output -r --keep-structure
+
+# Pro: multiple inputs
+pixify-pro -i ./assets -i ./public -o ./dist -f webp
 
 # Show help
 pixify-free --help
+pixify-pro --help
 ```
 
 ---
@@ -300,10 +377,11 @@ Saved:        102.2 MB (84.8%)
 ## Documentation
 
 - [libvips Installation Guide](./docs/install-libvips.md) - Detailed instructions for each platform
-- [Pixify Features](./docs/features.md) - All features in detail
+- [Pixify Features](./docs/features.md) - All features (Free & Pro)
 - [Performance & Speed](./docs/performance.md) - Performance metrics and results
 - [Showcase & Examples](./docs/showcase.md) - Real examples and results
-- [Pixify Free Documentation](./docs/free.md) - Free edition documentation
+- [Pixify Free](./docs/free.md) - Free edition documentation
+- [Pixify Pro Usage Guide](./docs/pro/usage-guide.md) - Pro commands, modes, activation, token
 - [Changelog](./docs/changelog.md) - Release history
 
 ---

@@ -57,9 +57,11 @@ pixify-free --input /home/user/images --output /home/user/optimized
 
 - تحويل JPG/PNG إلى WebP
 - جودة ثابتة 80
-- معالجة متوازية محسّنة
+- معالجة متوازية محسّنة (عدد عمال تلقائي)
 - Progress bar في الوقت الفعلي
 - تقرير إحصائيات شامل
+- **المدخل:** مجلد واحد فقط (`-i` مرة واحدة)
+- **لا مسح تكراري** — يقتصر على الملفات داخل المجلد المحدد مباشرة
 
 ---
 
@@ -155,9 +157,11 @@ pixify-free --input /home/user/images --output /home/user/optimized
 
 - Convert JPG/PNG to WebP
 - Fixed quality 80
-- Optimized parallel processing
+- Optimized parallel processing (auto workers)
 - Real-time progress bar
 - Comprehensive statistics report
+- **Input:** single directory only (`-i` once)
+- **No recursive scan** — only files directly inside the given folder
 
 ---
 
