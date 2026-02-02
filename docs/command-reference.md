@@ -14,8 +14,9 @@
 | Convert to WebP (single folder **or** recursive / multi-folder; or you already use Pro) | **Pro** | `pixify-pro -i <input> -o <output>` (default format is webp) |
 | Multiple formats (AVIF, HEIC, TIFF…), recursive, keep structure | **Pro** | `pixify-pro -i <input> -o <output> -f <format> -r --keep-structure` |
 | Same format, just recompress (PNG/JPEG) | **Pro** | `pixify-pro -i <input> -o <output> -f <format> --mode optimize` |
-| Replace originals in place | **Pro** | `pixify-pro -i <folder> -o <any> --mode optimize --inplace` |
-| Multiple input folders → one output | **Pro** | `pixify-pro -i <dir1> -i <dir2> -o <output>` |
+| Replace originals in place (write next to each file; no single output folder) | **Pro** | `pixify-pro -i <folder> -o <any> --mode optimize --inplace` |
+| Multiple input folders → one output, **each input as a subfolder** (e.g. `out/dir1/`, `out/dir2/`) | **Pro** | `pixify-pro -i <dir1> -i <dir2> -o <output>` (default `--keep-structure=true`) |
+| Multiple input folders → **all images in output root** (no subfolders; flat) | **Pro** | `pixify-pro -i <dir1> -i <dir2> -o <output> --keep-structure=false` (add `-r` if recursive) |
 | CI/CD, Docker, headless (no GUI) | **Pro** | Activate once, then use API token from dashboard; run with `PIXIFY_TOKEN=<token>` |
 
 ---
@@ -88,13 +89,16 @@
 |------------|---------|
 | Convert everything to WebP (default) | `pixify-pro -i ./images -o ./output` |
 | Convert to AVIF with recursion | `pixify-pro -i ./photos -o ./avif -f avif -r` |
-| Keep folder structure | `pixify-pro -i ./photos -o ./out -r --keep-structure` (default is true) |
-| Recompress PNG/JPEG in place (no new folder) | `pixify-pro -i ./images -o ./dummy --mode optimize --inplace` |
-| Multiple folders → one output | `pixify-pro -i ./assets -i ./public -o ./dist -f webp` |
+| Keep folder structure (input subfolders mirrored under output) | `pixify-pro -i ./photos -o ./out -r --keep-structure` (default is true) |
+| Multiple folders → one output **with a subfolder per input** (e.g. `out/assets/`, `out/public/`) | `pixify-pro -i ./assets -i ./public -o ./dist -f webp` |
+| **All images in the output root** (no subfolders; flat; add `-r` if recursive) | `pixify-pro -i ./dir1 -i ./dir2 -o ./out --keep-structure=false` |
+| Recompress PNG/JPEG in place (write next to originals; only with `--mode optimize`) | `pixify-pro -i ./images -o ./dummy --mode optimize --inplace` |
 | Auto format per image | `pixify-pro -i ./mixed -o ./out -f auto` |
 | Best quality, minimal loss | `pixify-pro -i ./images -o ./out -q 95` |
 | Activate license | `pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX` |
 | Use in CI/Docker | Create token in dashboard → set `PIXIFY_TOKEN` → run `pixify-pro -i ... -o ...` as usual. |
+
+**Notes:** **In-place** (`--inplace`) = write next to each original file; only with `--mode optimize`. It does **not** put all images in one folder. **Flat output** (all in root) = `--keep-structure=false`. If two inputs have the same filename, the tool will stop and suggest `--keep-structure` or `--inplace`.
 
 ---
 
@@ -133,8 +137,9 @@ Free has no format/mode/recursive options; one input folder, one output folder, 
 | تحويل إلى WebP (مجلد واحد **أو** تكراري/عدة مجلدات؛ أو أنك تستخدم Pro أصلاً) | **Pro** | `pixify-pro -i <مدخل> -o <مخرج>` (الافتراضي webp) |
 | صيغ متعددة (AVIF, HEIC, TIFF…)، تكراري، حفظ الهيكل | **Pro** | `pixify-pro -i <مدخل> -o <مخرج> -f <صيغة> -r --keep-structure` |
 | نفس الصيغة مع إعادة ضغط فقط (PNG/JPEG) | **Pro** | `pixify-pro -i <مدخل> -o <مخرج> -f <صيغة> --mode optimize` |
-| استبدال الملفات الأصلية في المكان | **Pro** | `pixify-pro -i <مجلد> -o <أي> --mode optimize --inplace` |
-| مجلدات مدخل متعددة → مخرج واحد | **Pro** | `pixify-pro -i <مجلد1> -i <مجلد2> -o <مخرج>` |
+| الكتابة بجانب كل ملف أصلي (في مكانه؛ ليس تجميعاً في مجلد واحد) | **Pro** | `pixify-pro -i <مجلد> -o <أي> --mode optimize --inplace` |
+| مجلدات مدخل متعددة → مخرج واحد، **كل مدخل كمجلد فرعي** (مثلاً `مخرج/مجلد1/`, `مخرج/مجلد2/`) | **Pro** | `pixify-pro -i <مجلد1> -i <مجلد2> -o <مخرج>` (الافتراضي keep-structure=true) |
+| مجلدات مدخل متعددة → **كل الصور في جذر المخرج** (بدون مجلدات فرعية) | **Pro** | `pixify-pro -i <مجلد1> -i <مجلد2> -o <مخرج> --keep-structure=false` (أضف `-r` للتكرار) |
 | CI/CD أو Docker أو بدون واجهة | **Pro** | تفعيل مرة واحدة، ثم استخدام رمز API من لوحة التحكم؛ التشغيل مع `PIXIFY_TOKEN=<الرمز>` |
 
 ---
@@ -207,13 +212,16 @@ Free has no format/mode/recursive options; one input folder, one output folder, 
 |----------|-------|
 | تحويل كل شيء إلى WebP (افتراضي) | `pixify-pro -i ./images -o ./output` |
 | تحويل إلى AVIF مع مسح تكراري | `pixify-pro -i ./photos -o ./avif -f avif -r` |
-| الحفاظ على هيكل المجلدات | `pixify-pro -i ./photos -o ./out -r --keep-structure` (الافتراضي true) |
-| إعادة ضغط PNG/JPEG في المكان (بدون مجلد جديد) | `pixify-pro -i ./images -o ./dummy --mode optimize --inplace` |
-| مجلدات متعددة → مخرج واحد | `pixify-pro -i ./assets -i ./public -o ./dist -f webp` |
+| الحفاظ على هيكل المجلدات (مرآة المجلدات تحت المخرج) | `pixify-pro -i ./photos -o ./out -r --keep-structure` (الافتراضي true) |
+| مجلدات متعددة → مخرج واحد **مع مجلد فرعي لكل مدخل** (مثلاً `مخرج/assets/`, `مخرج/public/`) | `pixify-pro -i ./assets -i ./public -o ./dist -f webp` |
+| **كل الصور في جذر المخرج** (بدون مجلدات فرعية؛ أضف `-r` للتكرار) | `pixify-pro -i ./dir1 -i ./dir2 -o ./out --keep-structure=false` |
+| إعادة ضغط PNG/JPEG في المكان (الكتابة بجانب الأصل؛ فقط مع `--mode optimize`) | `pixify-pro -i ./images -o ./dummy --mode optimize --inplace` |
 | صيغة تلقائية حسب الصورة | `pixify-pro -i ./mixed -o ./out -f auto` |
 | أعلى جودة مع أقل فقد | `pixify-pro -i ./images -o ./out -q 95` |
 | تفعيل الترخيص | `pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX` |
 | الاستخدام في CI/Docker | إنشاء الرمز من لوحة التحكم → تعيين `PIXIFY_TOKEN` → تشغيل `pixify-pro -i ... -o ...` كالمعتاد. |
+
+**ملاحظات:** **في المكان** (`--inplace`) = الكتابة بجانب كل ملف أصلي؛ فقط مع `--mode optimize`. لا يضع كل الصور في مجلد واحد. **مخرج مسطح** (كل الملفات في الجذر) = `--keep-structure=false`. إذا كان لمدخلين اسم ملف واحد، البرنامج يتوقف ويقترح `--keep-structure` أو `--inplace`.
 
 ---
 

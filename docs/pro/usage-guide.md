@@ -51,6 +51,15 @@ pixify-pro -i ./images -o ./out --mode optimize --inplace
 pixify-pro -i ./assets -i ./public -o ./dist -f webp
 ```
 
+### هيكل المخرج: متى تحصل على ماذا؟
+
+| الهدف | الأمر | النتيجة |
+|-------|-------|---------|
+| مجلد واحد → نفس الهيكل تحت المخرج | `-i ./photos -o ./out -r` | `out/صورة.webp`, `out/فرعي/صورة.webp` |
+| مجلدات متعددة → **مجلد فرعي لكل مدخل** | `-i ./assets -i ./public -o ./dist` | `dist/assets/...`, `dist/public/...` |
+| مجلدات متعددة → **كل الصور في جذر المخرج** (مسطح) | `-i ./dir1 -i ./dir2 -o ./out --keep-structure=false` | `out/صورة1.webp`, `out/صورة2.webp` (تحذير: تعارض أسماء يوقف التشغيل) |
+| الكتابة **بجانب كل ملف أصلي** (بدون مجلد مخرج واحد) | `-i ./images -o ./x --mode optimize --inplace` | الملفات تبقى في `./images/` بجانب الأصل |
+
 ### Processing Modes
 
 ```bash
