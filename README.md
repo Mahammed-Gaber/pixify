@@ -4,7 +4,7 @@
 
 <div align="center">
 
-![Pixify Cover](assets/logo_pixify.PNG)
+<img src="assets/logo_pixify.PNG" alt="Pixify Cover" width="280" />
 
 </div>
 
