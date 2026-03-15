@@ -31,7 +31,7 @@
 | **الهدف** | تحويل JPG/PNG إلى WebP بجودة ثابتة | تحويل متقدم، صيغ متعددة، أوضاع معالجة، ترخيص، CI/CD |
 | **المدخل/المخرج** | JPG, PNG → WebP (جودة 80) | WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP + Auto |
 | **المجلدات** | مجلد مدخل واحد، لا مسح تكراري | مسح تكراري، حفظ هيكل المجلدات، مدخلات متعددة، حفظ في المكان |
-| **الترخيص** | مجاني بالكامل | ترخيص Pro + رموز API من لوحة التحكم لـ CI/Docker |
+| **الترخيص** | مجاني بالكامل | ترخيص Pro + رموز API (CI/Docker/WSL/VM)؛ أمر `auth --token` لحفظ الرمز |
 | **التحميل** | [Releases](https://github.com/Mahammed-Gaber/pixify/releases) | [getpixify.com](https://getpixify.com) \| [الأسعار](https://getpixify.com/pricing) |
 
 ---
@@ -70,7 +70,7 @@ pixify-free --help
 pixify-pro --help
 ```
 
-**[مرجع الأوامر (مساعد الأوامر)](./docs/command-reference.md)** — جدول «أريد أن…» → الأمر، وخيارات Free و Pro والتوليفات الصحيحة.
+**[مرجع الأوامر](./docs/command-reference.md)** — «أريد أن…» → الأمر. **استخدام Pro في WSL أو Docker/CI:** [الرموز والبيئات](docs/pro/tokens-and-environments.md).
 
 ---
 
@@ -81,8 +81,14 @@ pixify-pro --help
 | المنصة | الرابط |
 |--------|--------|
 | **Windows** | [Pixify-Free-Windows-v1.0.0.zip](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/Pixify-Free-Windows-v1.0.0.zip) |
-| **Linux** | [Pixify-Free-Linux-v1.0.0.zip](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/Pixify-Free-Linux-v1.0.0.zip) |
-| **macOS** | [Pixify-Free-macOS-v1.0.0.zip](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/Pixify-Free-macOS-v1.0.0.zip) |
+| **Linux (x86_64)** | [pixify-free-linux-amd64.tar.gz](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/pixify-free-linux-amd64.tar.gz) |
+| **macOS (Apple Silicon)** | [pixify-free-darwin-arm64.tar.gz](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/pixify-free-darwin-arm64.tar.gz) |
+| **macOS (Intel)** | [pixify-free-darwin-amd64.tar.gz](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/pixify-free-darwin-amd64.tar.gz) |
+
+**أو عبر Homebrew (macOS/Linux):**
+```bash
+brew install Mahammed-Gaber/pixify/pixify-free
+```
 
 **Pixify Pro:** [getpixify.com](https://getpixify.com) | [الأسعار](https://getpixify.com/pricing)
 
@@ -93,6 +99,7 @@ pixify-pro --help
 | المستند | الوصف |
 |---------|--------|
 | **[مرجع الأوامر](docs/command-reference.md)** | مساعد الأوامر: Free و Pro، التوليفات الصحيحة، «أريد أن…» → الأمر |
+| **[الرموز والبيئات (Pro)](docs/pro/tokens-and-environments.md)** | استخدام Pro في WSL و VM و Docker و CI؛ أمر `auth --token` وملف الإعدادات |
 | [فهرس التوثيق](docs/README.md) | قائمة بجميع الأدلة والمراجع |
 | [تثبيت libvips](docs/install-libvips.md) | تعليمات التثبيت لكل نظام |
 | [المميزات](docs/features.md) | نظرة عامة على المميزات وحالات الاستخدام |
@@ -150,7 +157,7 @@ pixify-pro --help
 | **Purpose** | Convert JPG/PNG to WebP at fixed quality | Advanced conversion, multiple formats, processing modes, licensing, CI/CD |
 | **Input/Output** | JPG, PNG → WebP (quality 80) | WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP + Auto |
 | **Folders** | Single input folder, no recursive scan | Recursive scan, keep structure, multiple inputs, in-place |
-| **Licensing** | Fully free | Pro license + API tokens from dashboard for CI/Docker |
+| **Licensing** | Fully free | Pro license + API tokens (CI/Docker/WSL/VM); `auth --token` to save token |
 | **Download** | [Releases](https://github.com/Mahammed-Gaber/pixify/releases) | [getpixify.com](https://getpixify.com) \| [Pricing](https://getpixify.com/pricing) |
 
 ---
@@ -189,7 +196,7 @@ pixify-free --help
 pixify-pro --help
 ```
 
-**[Command Reference (command assistant)](./docs/command-reference.md)** — “I want to…” → command, Free and Pro options, and valid combinations.
+**[Command Reference (command assistant)](./docs/command-reference.md)** — “I want to…” → command. **Pro in WSL or Docker/CI:** [Tokens and environments](docs/pro/tokens-and-environments.md).
 
 ---
 
@@ -200,8 +207,14 @@ pixify-pro --help
 | Platform | Link |
 |----------|------|
 | **Windows** | [Pixify-Free-Windows-v1.0.0.zip](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/Pixify-Free-Windows-v1.0.0.zip) |
-| **Linux** | [Pixify-Free-Linux-v1.0.0.zip](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/Pixify-Free-Linux-v1.0.0.zip) |
-| **macOS** | [Pixify-Free-macOS-v1.0.0.zip](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/Pixify-Free-macOS-v1.0.0.zip) |
+| **Linux (x86_64)** | [pixify-free-linux-amd64.tar.gz](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/pixify-free-linux-amd64.tar.gz) |
+| **macOS (Apple Silicon)** | [pixify-free-darwin-arm64.tar.gz](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/pixify-free-darwin-arm64.tar.gz) |
+| **macOS (Intel)** | [pixify-free-darwin-amd64.tar.gz](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/pixify-free-darwin-amd64.tar.gz) |
+
+**Or via Homebrew (macOS/Linux):**
+```bash
+brew install Mahammed-Gaber/pixify/pixify-free
+```
 
 **Pixify Pro:** [getpixify.com](https://getpixify.com) | [Pricing](https://getpixify.com/pricing)
 
@@ -212,6 +225,7 @@ pixify-pro --help
 | Document | Description |
 |----------|-------------|
 | **[Command Reference](docs/command-reference.md)** | Command assistant: Free and Pro options, valid combinations, “I want to…” → command |
+| **[Tokens and environments (Pro)](docs/pro/tokens-and-environments.md)** | Using Pro in WSL, VM, Docker, CI; `auth --token` and config file |
 | [Documentation index](docs/README.md) | Full list of guides and references |
 | [Install libvips](docs/install-libvips.md) | Installation instructions per platform |
 | [Features](docs/features.md) | Feature overview and use cases |

@@ -6,6 +6,8 @@
 
 **للحصول على الأمر المناسب بسرعة:** راجع [مرجع الأوامر](command-reference.md) — «أريد أن…» → الأمر، وخيارات Free و Pro والتوليفات الصحيحة.
 
+![مقارنة Free و Pro](../assets/screenshots/features-comparison.png)
+
 ---
 
 ## المميزات الأساسية
@@ -84,7 +86,7 @@
 ### الترخيص والاستخدام الاحترافي
 
 - **تفعيل ترخيص** مع رسائل واضحة (حد الأجهزة، انتهاء الصلاحية، إلغاء الترخيص)
-- **رموز API لـ CI/CD و Docker:** تُخزَّن الرموز بشكل آمن (هاش)؛ الرمز الكامل يُعرض مرة واحدة فقط عند الإنشاء ويجب حفظه في مكان آمن. في لوحة التحكم تظهر الرموز بشكل مُقنَّع (مثل pix_****abcd)، مع اسم مستعار وانتهاء اختياري؛ ويمكن إلغاء الرمز من لوحة التحكم.
+- **رموز API لـ WSL و VM و CI و Docker:** في البيئات العابرة (WSL، VM، Docker، CI، Cloud) يكفي **رمز (Token)** — من متغير `PIXIFY_TOKEN` أو (في WSL/VM) من ملف الإعدادات بعد تنفيذ **`pixify-pro auth --token YOUR_TOKEN`**. الرموز تُنشأ من لوحة التحكم فقط؛ الرمز الكامل يُعرض مرة واحدة. انظر [الرموز والبيئات](pro/tokens-and-environments.md).
 - **عمال تلقائي** — استخدام كامل لقوة المعالج (NumCPU)
 
 ---
@@ -184,6 +186,8 @@
 
 **For the right command quickly:** see [Command Reference](command-reference.md) — “I want to…” → command, Free and Pro options, and valid combinations.
 
+![Free vs Pro feature comparison chart](../assets/screenshots/features-comparison.png)
+
 ---
 
 ## Core Features
@@ -262,7 +266,7 @@
 ### Licensing & Pro Use
 
 - **License activation** with clear messages (machine limit, expired, revoked)
-- **API tokens for CI/CD & Docker:** Tokens are stored securely (hashed); the full token is shown only once at creation and must be stored safely. The dashboard shows tokens in masked form (e.g. pix_****abcd), with alias and optional expiry; tokens can be revoked from the dashboard.
+- **API tokens for WSL, VM, CI & Docker:** In ephemeral environments (WSL, VM, Docker, CI, Cloud) a **token** is enough — set `PIXIFY_TOKEN` or (WSL/VM) run **`pixify-pro auth --token YOUR_TOKEN`** to save to `~/.pixify/config.json`. Tokens are created from the dashboard only; full token is shown once. See [Tokens and environments](pro/tokens-and-environments.md).
 - **Auto workers** — full CPU usage (NumCPU)
 
 ---

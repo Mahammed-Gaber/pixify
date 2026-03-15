@@ -6,6 +6,8 @@
 
 ## مقاييس الأداء
 
+![مخطط أداء](../assets/screenshots/performance-chart.png)
+
 ### سرعة المعالجة
 
 Pixify مصمم للسرعة. النتائج التالية على جهاز متوسط المواصفات:
@@ -178,6 +180,8 @@ Pixify يوفر:
 # Performance & Speed
 
 ## Performance Metrics
+
+![Performance benchmark chart](../assets/screenshots/performance-chart.png)
 
 ### Processing Speed
 

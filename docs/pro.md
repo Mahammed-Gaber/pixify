@@ -30,8 +30,8 @@ Pixify Pro هو النسخة الاحترافية من Pixify — متاح في 
 
 ### الترخيص والاستخدام الاحترافي
 
-- **تفعيل ترخيص** مع رسائل واضحة (حد الأجهزة، انتهاء الصلاحية، إلخ)
-- **توكن لـ CI/CD و Docker** — للاستخدام في السيرفرات والبيئات العابرة
+- **تفعيل ترخيص** (جهاز عادي) مع رسائل واضحة (حد الأجهزة، انتهاء الصلاحية، إلخ)
+- **رمز (Token) لـ WSL و VM و Docker و CI و Cloud** — من `PIXIFY_TOKEN` أو (WSL/VM) من `~/.pixify/config.json` عبر `pixify-pro auth --token YOUR_TOKEN`
 - **عمال تلقائي** — استخدام كامل لقوة المعالج (NumCPU)
 
 ---
@@ -70,11 +70,14 @@ pixify-pro -i ./photos -o ./avif -f avif -r
 # مدخلات متعددة + الحفاظ على الهيكل
 pixify-pro -i ./assets -i ./public -o ./dist --keep-structure
 
-# تفعيل الترخيص
+# تفعيل الترخيص (جهاز عادي)
 pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX
+
+# حفظ الرمز لـ WSL/VM (بدون كاش ترخيص)
+pixify-pro auth --token YOUR_PRO_TOKEN
 ```
 
-**للقائمة الكاملة بالأوامر والأمثلة:** [دليل استخدام Pro](./pro/usage-guide.md)
+**للقائمة الكاملة:** [دليل استخدام Pro](./pro/usage-guide.md) | **WSL/VM/Docker/CI:** [الرموز والبيئات](./pro/tokens-and-environments.md)
 
 ---
 
@@ -89,6 +92,7 @@ pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX
 | `--keep-structure` | الحفاظ على هيكل المجلدات في الإخراج | لا (افتراضي: true) |
 | `--inplace` | حفظ بجانب الأصل (فقط مع Optimize) | لا |
 | `--activate` | تفعيل الترخيص (مع `--license-key`) | لا |
+| `auth --token <token>` | حفظ الرمز في الإعدادات (WSL/VM)； انظر [الرموز والبيئات](pro/tokens-and-environments.md) | لا |
 | `-h`, `--help` | عرض رسالة المساعدة | لا |
 
 ---
@@ -159,8 +163,8 @@ Pixify Pro is the professional version of Pixify — available in the **first re
 
 ### Licensing & Pro Use
 
-- **License activation** with clear messages (machine limit, expired, etc.)
-- **Token for CI/CD & Docker** — for use in servers and ephemeral environments
+- **License activation** (native PC) with clear messages (machine limit, expired, etc.)
+- **Token for WSL, VM, Docker, CI, Cloud** — from `PIXIFY_TOKEN` or (WSL/VM) from `~/.pixify/config.json` via `pixify-pro auth --token YOUR_TOKEN`
 - **Auto workers** — full CPU usage (NumCPU)
 
 ---
@@ -199,8 +203,11 @@ pixify-pro -i ./photos -o ./avif -f avif -r
 # Multiple inputs + keep structure
 pixify-pro -i ./assets -i ./public -o ./dist --keep-structure
 
-# Activate license
+# Activate license (native PC)
 pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX
+
+# Save token for WSL/VM (no license cache needed)
+pixify-pro auth --token YOUR_PRO_TOKEN
 ```
 
 **For full command list and examples:** [Pro Usage Guide](./pro/usage-guide.md)
@@ -218,6 +225,7 @@ pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX
 | `--keep-structure` | Keep folder structure in output | No (default: true) |
 | `--inplace` | Save next to original (Optimize mode only) | No |
 | `--activate` | Activate license (with `--license-key`) | No |
+| `auth --token <token>` | Save token to config (WSL/VM); see [Tokens and environments](pro/tokens-and-environments.md) | No |
 | `-h`, `--help` | Show help message | No |
 
 ---

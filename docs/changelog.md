@@ -54,6 +54,22 @@
 
 ---
 
+## أحدث التحديثات — الرموز والبيئات (Pro)
+
+تم توسيع دعم Pro ليعمل دون ملف ترخيص مخزّن في **البيئات العابرة** (WSL، VM، Docker، CI، Cloud) باستخدام **رمز (Token)** فقط.
+
+### ما الجديد
+
+- **كشف نوع البيئة:** Pro يكتشف تلقائياً إن كنت على جهاز عادي (Native) أو WSL أو VM أو Docker أو CI أو Cloud، ويعرض رسائل مناسبة لكل بيئة.
+- **WSL و VM:** لا حاجة لتفعيل ترخيص بـ license key؛ يكفي **رمز (Token)**. يمكن حفظ الرمز مرة واحدة في `~/.pixify/config.json` عبر الأمر **`pixify-pro auth --token YOUR_TOKEN`** ثم تشغيل Pro دون تعيين `PIXIFY_TOKEN` في كل مرة.
+- **أمر `auth --token`:** أمر جديد لحفظ الرمز في ملف الإعدادات (التحقق من الرمز عند الاتصال بالسيرفر؛ إن لم يكن هناك إنترنت يُحفظ مع تحذير).
+- **مصدر الرمز:** في WSL/VM: أولاً من ملف الإعدادات (`~/.pixify/config.json`)، ثم من متغير البيئة `PIXIFY_TOKEN`. في Docker/CI/Cloud: من `PIXIFY_TOKEN` فقط.
+- **إعادة تعيين كاش الترخيص:** عند تغيّر الجهاز أو عدم تطابق Machine ID، يُحذف ملف الترخيص المخزّن تلقائياً مع رسالة: «License cache was reset due to system changes. Re-authenticating...» — ثم إما تفعيل من جديد (جهاز عادي) أو استخدام الرمز (WSL/VM/Docker/CI).
+
+**التوثيق الكامل:** [الرموز والبيئات](pro/tokens-and-environments.md).
+
+---
+
 ## التحديثات المستقبلية
 
 ### المخطط
@@ -126,6 +142,22 @@ The first release of Pixify includes both **Pixify Free** and **Pixify Pro**.
 
 - License key is partially masked in the UI; activation errors (e.g. 403) show the server message
 - API tokens: secure (hashed) storage, full token shown once at creation, dashboard shows masked form, revocation by token ID or license
+
+---
+
+## Latest updates — Tokens and environments (Pro)
+
+Pro now supports running **without a stored license file** in **ephemeral environments** (WSL, VM, Docker, CI, Cloud) using only a **token**.
+
+### What’s new
+
+- **Environment detection:** Pro detects whether you’re on a native PC, WSL, VM, Docker, CI, or Cloud and shows the right message for each.
+- **WSL and VM:** No license-key activation needed; a **token** is enough. You can save the token once to `~/.pixify/config.json` with **`pixify-pro auth --token YOUR_TOKEN`** and then run Pro without setting `PIXIFY_TOKEN` each time.
+- **`auth --token` command:** New command to save the token to the config file (validates when the server is reachable; if offline, saves with a warning).
+- **Token source:** In WSL/VM: config file first (`~/.pixify/config.json`), then `PIXIFY_TOKEN`. In Docker/CI/Cloud: `PIXIFY_TOKEN` only.
+- **License cache reset:** When the machine changes or Machine ID doesn’t match, the stored license file is removed automatically with: “License cache was reset due to system changes. Re-authenticating...” — then either reactivate (native) or use a token (WSL/VM/Docker/CI).
+
+**Full guide:** [Tokens and environments](pro/tokens-and-environments.md).
 
 ---
 

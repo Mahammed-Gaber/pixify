@@ -17,7 +17,7 @@
 | Replace originals in place (write next to each file; no single output folder) | **Pro** | `pixify-pro -i <folder> -o <any> --mode optimize --inplace` |
 | Multiple input folders → one output, **each input as a subfolder** (e.g. `out/dir1/`, `out/dir2/`) | **Pro** | `pixify-pro -i <dir1> -i <dir2> -o <output>` (default `--keep-structure=true`) |
 | Multiple input folders → **all images in output root** (no subfolders; flat) | **Pro** | `pixify-pro -i <dir1> -i <dir2> -o <output> --keep-structure=false` (add `-r` if recursive) |
-| CI/CD, Docker, headless (no GUI) | **Pro** | Activate once, then use API token from dashboard; run with `PIXIFY_TOKEN=<token>` |
+| CI/CD, Docker, headless (no GUI) | **Pro** | Set `PIXIFY_TOKEN` or (WSL/VM) run `pixify-pro auth --token <token>` once; see [Tokens and environments](pro/tokens-and-environments.md) |
 
 ---
 
@@ -55,8 +55,9 @@
 | In-place | — | `--inplace` | No | **Only with `--mode optimize`** | Write next to originals; `-o` ignored. |
 | Auto output format | — | `--auto-output` | No | All | Auto-select output format from input. |
 | Keep metadata | — | `--keep-metadata` | No | **Only with `--mode optimize`** | Preserve EXIF/metadata. |
-| Activate license | — | `--activate` | No | With `--license-key` | Activate Pro license. |
+| Activate license | — | `--activate` | No | With `--license-key` | Activate Pro license (native PC). |
 | License key | — | `--license-key` | For activation | With `--activate` | Your Pro license key. |
+| Save token (WSL/VM/CI) | — | `auth --token <token>` | No | Subcommand: `pixify-pro auth --token X` | Save token to `~/.pixify/config.json`; use in WSL/VM so you don’t need `PIXIFY_TOKEN` each time. |
 | Version | `-v` | `--version` | No | — | Show version and license status. |
 | Help | `-h` | `--help` | No | — | Show full help. |
 
@@ -79,7 +80,7 @@
 
 - `--inplace` without `--mode optimize` → Error.
 - `--keep-metadata` without `--mode optimize` → Error.
-- Token generation from CLI → Not available; create tokens only from the [dashboard](https://getpixify.com). Use `PIXIFY_TOKEN` in CI/Docker.
+- Token *creation* (new token) → Only from the [dashboard](https://getpixify.com). Use `pixify-pro auth --token X` to *save* an existing token (WSL/VM).
 
 ---
 
@@ -95,8 +96,9 @@
 | Recompress PNG/JPEG in place (write next to originals; only with `--mode optimize`) | `pixify-pro -i ./images -o ./dummy --mode optimize --inplace` |
 | Auto format per image | `pixify-pro -i ./mixed -o ./out -f auto` |
 | Best quality, minimal loss | `pixify-pro -i ./images -o ./out -q 95` |
-| Activate license | `pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX` |
-| Use in CI/Docker | Create token in dashboard → set `PIXIFY_TOKEN` → run `pixify-pro -i ... -o ...` as usual. |
+| Activate license (native) | `pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX` |
+| Use in CI/Docker | Set `PIXIFY_TOKEN`; run `pixify-pro -i ... -o ...` as usual. See [Tokens and environments](pro/tokens-and-environments.md). |
+| Use in WSL/VM (save token once) | `pixify-pro auth --token YOUR_TOKEN` then run `pixify-pro -i ... -o ...` without setting ENV. |
 
 **Notes:** **In-place** (`--inplace`) = write next to each original file; only with `--mode optimize`. It does **not** put all images in one folder. **Flat output** (all in root) = `--keep-structure=false`. If two inputs have the same filename, the tool will stop and suggest `--keep-structure` or `--inplace`.
 

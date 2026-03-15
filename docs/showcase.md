@@ -18,6 +18,8 @@
 [████████████████████████████████████████████████] [500/500] 100.0% ETA: 0s
 ```
 
+![لقطة طرفية - معالجة 500 صورة](../assets/screenshots/showcase-terminal-500.png)
+
 ---
 
 ## التقارير النهائية
@@ -71,6 +73,8 @@ Powered by Pixify Engine
 | 3.2 MB       | 0.5 MB            | كبير    |
 | 5.2 MB       | 0.8 MB            | كبير    |
 | 8.5 MB       | 1.2 MB            | كبير    |
+
+![مقارنة الحجم: قبل وبعد](../assets/screenshots/size-comparison.png)
 
 ---
 
@@ -190,7 +194,7 @@ Saved:        102.2 MB (84.8%)
 
 ## فيديو توضيحي
 
-[رابط فيديو YouTube يوضح استخدام Pixify وتحويل الصور]
+فيديو توضيحي سيُضاف لاحقاً.
 
 ---
 
@@ -221,6 +225,8 @@ Saved:        102.2 MB (84.8%)
 ```
 [████████████████████████████████████████████████] [500/500] 100.0% ETA: 0s
 ```
+
+![Terminal screenshot - Pixify processing 500 images](../assets/screenshots/showcase-terminal-500.png)
 
 ---
 
@@ -275,6 +281,8 @@ Powered by Pixify Engine
 | 3.2 MB       | 0.5 MB               | Significant |
 | 5.2 MB       | 0.8 MB               | Significant |
 | 8.5 MB       | 1.2 MB               | Significant |
+
+![Comparison: before vs after file sizes](../assets/screenshots/size-comparison.png)
 
 ---
 
@@ -394,7 +402,7 @@ Saved:        102.2 MB (84.8%)
 
 ## Video Tutorial
 
-[YouTube video link demonstrating Pixify usage and image conversion]
+Video tutorial will be added here.
 
 ---
 

@@ -79,11 +79,16 @@ pixify-pro -i ./images -o ./output --auto-output
 ### التفعيل ورموز API
 
 ```bash
-# تفعيل الترخيص (مرة واحدة على الجهاز)
+# تفعيل الترخيص (مرة واحدة على الجهاز — Native فقط)
 pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX
 ```
 
-**رموز API (CI/CD، Docker):** إنشاء الرموز يتم **من لوحة التحكم فقط** ([getpixify.com](https://getpixify.com)). بعد إنشاء الرمز، انسخه واحفظه في مكان آمن (مثلاً متغير بيئة أو أمانات CI). الرمز الكامل يُعرض **مرة واحدة فقط**؛ في لوحة التحكم تظهر الرموز بشكل مُقنَّع (مثل pix_****abcd). استخدم المتغير `PIXIFY_TOKEN` عند التشغيل في CI أو Docker. راجع [مرجع الأوامر](../command-reference.md) لسيناريو «الاستخدام في CI/Docker».
+**استخدام Pro في WSL أو VM أو Docker أو CI:**  
+في هذه البيئات لا يُستخدم ملف ترخيص مخزّن؛ يكفي **رمز (Token)**. يمكنك:
+- **تعيين متغير البيئة:** `export PIXIFY_TOKEN=your_token`
+- **حفظ الرمز مرة واحدة (WSL/VM):** `pixify-pro auth --token your_token` — يُحفظ في `~/.pixify/config.json` وتشغيل Pro لاحقاً بدون تعيين ENV.
+
+إنشاء الرموز من [لوحة التحكم](https://getpixify.com) فقط؛ الرمز الكامل يُعرض **مرة واحدة**. للتفاصيل: [الرموز والبيئات](tokens-and-environments.md). راجع [مرجع الأوامر](../command-reference.md) لسيناريو «الاستخدام في CI/Docker».
 
 ### دمج الأوامر
 
