@@ -1,25 +1,33 @@
-# دليل استخدام Pixify Pro
+# Pixify Pro — Usage Guide
 
-## نظرة عامة
-
-Pixify Pro هو النسخة الاحترافية من Pixify: **جميع الصيغ الحديثة** (WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP)، أوضاع معالجة (Smart, Force, Optimize)، مسح تكراري، حفظ الهيكل، مدخلات متعددة، ترخيص ورموز API من لوحة التحكم.
-
-**للأمر المناسب بسرعة:** راجع [مرجع الأوامر](../command-reference.md) — «أريد أن…» → الأمر، والتوليفات الصحيحة.
+**[English](#english) | [العربية](#arabic)**
 
 ---
 
-## الأوامر الأساسية
+<div id="english" dir="ltr">
 
-### الاستخدام الأساسي
+## English
+
+### Overview
+
+Pixify Pro is the professional edition of Pixify: **all modern formats** (WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP), processing modes (Smart, Force, Optimize), recursive scan, structure preservation, multiple inputs, and license/API tokens from the dashboard.
+
+**Quick command lookup:** see [Command Reference](../command-reference.md) — “I want to…” → command and valid combinations.
+
+---
+
+### Basic Commands
+
+#### Basic usage
 
 ```bash
 pixify-pro -i ./images -o ./output
 ```
 
-### تحديد صيغة الإخراج
+#### Output format
 
 ```bash
-pixify-pro -i ./images -o ./output -f webp    # WebP (افتراضي)
+pixify-pro -i ./images -o ./output -f webp    # WebP (default)
 pixify-pro -i ./images -o ./output -f jpeg    # JPEG
 pixify-pro -i ./images -o ./output -f png     # PNG
 pixify-pro -i ./images -o ./output -f avif    # AVIF
@@ -31,469 +39,242 @@ pixify-pro -i ./images -o ./output -f bmp     # BMP
 pixify-pro -i ./images -o ./output -f auto    # Auto-select
 ```
 
-### مسح تكراري والحفاظ على الهيكل
+#### Recursive scan and structure
 
 ```bash
-# مسح المجلدات الفرعية (-r أو --recursive)
+# Recursive (-r or --recursive)
 pixify-pro -i ./photos -o ./output -r
 
-# الحفاظ على هيكل المجلدات في الإخراج (افتراضي: true)
+# Preserve folder structure in output (default: true)
 pixify-pro -i ./photos -o ./dist --keep-structure
 
-# حفظ بجانب الأصل (فقط مع --mode optimize)
+# In-place next to originals (only with --mode optimize)
 pixify-pro -i ./images -o ./out --mode optimize --inplace
 ```
 
-### مدخلات متعددة (Multi-Input)
+#### Multiple inputs
 
 ```bash
-# أكثر من مجلد في أمر واحد
 pixify-pro -i ./assets -i ./public -o ./dist -f webp
 ```
 
-### هيكل المخرج: متى تحصل على ماذا؟
+#### Output structure: what you get
 
-| الهدف | الأمر | النتيجة |
-|-------|-------|---------|
-| مجلد واحد → نفس الهيكل تحت المخرج | `-i ./photos -o ./out -r` | `out/صورة.webp`, `out/فرعي/صورة.webp` |
-| مجلدات متعددة → **مجلد فرعي لكل مدخل** | `-i ./assets -i ./public -o ./dist` | `dist/assets/...`, `dist/public/...` |
-| مجلدات متعددة → **كل الصور في جذر المخرج** (مسطح) | `-i ./dir1 -i ./dir2 -o ./out --keep-structure=false` | `out/صورة1.webp`, `out/صورة2.webp` (تحذير: تعارض أسماء يوقف التشغيل) |
-| الكتابة **بجانب كل ملف أصلي** (بدون مجلد مخرج واحد) | `-i ./images -o ./x --mode optimize --inplace` | الملفات تبقى في `./images/` بجانب الأصل |
+| Goal | Command | Result |
+|------|---------|--------|
+| Single folder → same structure under output | `-i ./photos -o ./out -r` | `out/photo.webp`, `out/sub/photo.webp` |
+| Multiple folders → **subfolder per input** | `-i ./assets -i ./public -o ./dist` | `dist/assets/...`, `dist/public/...` |
+| Multiple folders → **flat** (all in output root) | `-i ./dir1 -i ./dir2 -o ./out --keep-structure=false` | `out/photo1.webp`, `out/photo2.webp` (name clashes can stop the run) |
+| **In-place** next to each original | `-i ./images -o ./x --mode optimize --inplace` | Files stay in `./images/` next to originals |
 
-### Processing Modes
+#### Processing modes
 
 ```bash
-pixify-pro -i ./images -o ./output --mode smart    # افتراضي
-pixify-pro -i ./images -o ./output --mode force     # يجبر التحويل
-pixify-pro -i ./images -o ./output --mode optimize  # ضغط فقط
+pixify-pro -i ./images -o ./output --mode smart    # default
+pixify-pro -i ./images -o ./output --mode force    # force conversion
+pixify-pro -i ./images -o ./output --mode optimize # same format, recompress only
 ```
 
-### Auto Output Mode
+#### Auto output
 
 ```bash
 pixify-pro -i ./images -o ./output -f auto
-# أو
+# or
 pixify-pro -i ./images -o ./output --auto-output
 ```
 
-### التفعيل ورموز API
+#### Activation and API tokens
 
 ```bash
-# تفعيل الترخيص (مرة واحدة على الجهاز — Native فقط)
+# Activate license (once per machine — native only)
 pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX
 ```
 
-**استخدام Pro في WSL أو VM أو Docker أو CI:**  
-في هذه البيئات لا يُستخدم ملف ترخيص مخزّن؛ يكفي **رمز (Token)**. يمكنك:
-- **تعيين متغير البيئة:** `export PIXIFY_TOKEN=your_token`
-- **حفظ الرمز مرة واحدة (WSL/VM):** `pixify-pro auth --token your_token` — يُحفظ في `~/.pixify/config.json` وتشغيل Pro لاحقاً بدون تعيين ENV.
+**Using Pro in WSL, VM, Docker, or CI:**  
+In these environments the stored license file is not used; a **token** is enough. You can:
+- **Set env:** `export PIXIFY_TOKEN=your_token`
+- **Save token once (WSL/VM):** `pixify-pro auth --token your_token` — stored in `~/.pixify/config.json`, then run Pro without setting ENV.
 
-إنشاء الرموز من [لوحة التحكم](https://getpixify.com) فقط؛ الرمز الكامل يُعرض **مرة واحدة**. للتفاصيل: [الرموز والبيئات](tokens-and-environments.md). راجع [مرجع الأوامر](../command-reference.md) لسيناريو «الاستخدام في CI/Docker».
+Tokens are created from the [dashboard](https://getpixify.com) only; the full token is shown **once**. Details: [Tokens and environments](tokens-and-environments.md). For CI/Docker: [Command Reference](../command-reference.md).
 
-### دمج الأوامر
+#### Combined example
 
 ```bash
 pixify-pro -i ./images -o ./output -f avif -r --keep-structure
 ```
 
-**ملاحظة:** العمال (Workers) تُضبط تلقائياً في Pro لاستخدام كل الأنوية (NumCPU). لا يوجد خيار `-w/--workers`.
+**Note:** Workers are set automatically in Pro (NumCPU). There is no `-w/--workers` option.
 
 ---
 
-## الصيغ المدعومة
+### Supported Formats
 
-### المدخلة (Input)
+**Input:** JPEG, PNG, WebP, AVIF, HEIC, HEIF, TIFF, GIF, BMP  
 
-- ✅ JPEG (`.jpg`, `.jpeg`)
-- ✅ PNG (`.png`)
-- ✅ WebP (`.webp`)
-- ✅ AVIF (`.avif`)
-- ✅ HEIC (`.heic`)
-- ✅ HEIF (`.heif`)
-- ✅ TIFF (`.tiff`, `.tif`)
-- ✅ GIF (`.gif`)
-- ✅ BMP (`.bmp`)
-
-### المخرجة (Output)
-
-- ✅ WebP (افتراضي)
-- ✅ JPEG
-- ✅ PNG
-- ✅ AVIF
-- ✅ HEIC
-- ✅ HEIF
-- ✅ TIFF
-- ✅ GIF
-- ✅ BMP
-- ✅ Auto (اختيار تلقائي)
+**Output:** WebP (default), JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP, Auto
 
 ---
 
-## Processing Modes
+### Processing Modes (detail)
 
-### Smart Mode (افتراضي)
+#### Smart (default)
 
-**السلوك:**
-- Auto-detect صيغة الإدخال
-- Auto-optimize إذا كان مفيداً
-- Auto-skip إذا لا فائدة
+- Auto-detect input format
+- Auto-optimize when useful
+- Auto-skip when there’s no benefit
 
-**متى تستخدمه:**
-- الاستخدام العادي (90% من الحالات)
-- تريد أفضل قرار تلقائي
+Use for: general use (most cases).
 
-**مثال:**
 ```bash
 pixify-pro -i ./images -o ./output
 ```
 
----
+#### Force
 
-### Force Mode
+- Converts to the chosen format every time
+- Ignores Smart skip rules
+- Use for: re-encode with different quality, change compression, strip metadata, or force WebP/AVIF re-encode.
 
-**السلوك:**
-- يجبر التحويل للصيغة المحددة
-- يتجاهل جميع قواعد Smart Skip
-- يحول حتى لو نفس الصيغة
-
-**متى تستخدمه:**
-- تريد إعادة encode بجودة مختلفة
-- تريد تغيير إعدادات الضغط
-- تريد إزالة metadata
-- تريد إجبار التحويل رغم Smart Skip (حالات خاصة: WebP/AVIF → نفس الصيغة)
-
-**مثال:**
 ```bash
 pixify-pro -i ./webp_images -o ./output -f webp --mode force
 ```
 
----
+#### Optimize
 
-### Optimize Mode
+- Same format, recompress only
+- PNG: lossless optimization (only if size decreases)
+- JPEG: recompress (only if ≥5% size reduction)
+- WebP/AVIF/HEIC/HEIF: skip (already optimized)
+- Animated GIF: skip (would break animation)
+- Static GIF: convert to WebP (large savings)
+- **Metadata:** removed by default; use `--keep-metadata` to keep it.
 
-**السلوك:**
-- نفس الصيغة لكن إعادة ضغط
-- PNG: lossless optimization (فقط إذا قل الحجم)
-- JPEG: recompression (فقط إذا قل الحجم بنسبة 5%+)
-- WebP/AVIF: غير مدعوم (Skip - already highly optimized)
-- HEIC/HEIF: غير مدعوم (Skip - already highly optimized, H.265 based)
-- Animated GIF: غير مدعوم (Skip - would break animation)
-- Static GIF: مدعوم (Convert to WebP - saves up to 92%)
-- **Metadata:** يُزال افتراضيًا (استخدم `--keep-metadata` للاحتفاظ به)
+Use for: compress PNG/JPEG without changing format.
 
-**متى تستخدمه:**
-- تريد ضغط PNG بدون تغيير الصيغة
-- تريد تحسين JPEG بدون تغيير الصيغة
-- تريد تقليل الحجم مع الحفاظ على الصيغة
-- تريد الاحتفاظ بـ metadata (كاميرا، GPS، تاريخ، إلخ)
-
-**أمثلة:**
 ```bash
-# ضغط PNG مع إزالة metadata (افتراضي)
 pixify-pro -i ./png_images -o ./output -f png --mode optimize
-
-# ضغط PNG مع الاحتفاظ بـ metadata
 pixify-pro -i ./png_images -o ./output -f png --mode optimize --keep-metadata
 ```
 
 ---
 
-## Auto Output Mode
+### Auto Output Mode
 
-### كيف يعمل
-
-Auto Output Mode يختار الصيغة تلقائياً بناءً على صيغة الإدخال:
-
-| صيغة الإدخال | صيغة الإخراج (Smart) | صيغة الإخراج (Force) |
-|--------------|---------------------|----------------------|
+| Input | Output (Smart) | Output (Force) |
+|-------|----------------|----------------|
 | JPEG | WebP | WebP |
 | PNG | WebP | WebP |
-| WebP | SKIP | WebP (Force) |
-| AVIF | SKIP | AVIF (Force) |
+| WebP | SKIP | WebP |
+| AVIF | SKIP | AVIF |
 | HEIC/HEIF | AVIF | AVIF |
 | GIF | WebP | WebP |
-| TIFF | WebP | WebP |
-| BMP | WebP | WebP |
-
-### الاستخدام
+| TIFF/BMP | WebP | WebP |
 
 ```bash
-# تفعيل Auto Output
 pixify-pro -i ./images -o ./output -f auto
-
-# مع Force Mode
 pixify-pro -i ./images -o ./output -f auto --mode force
 ```
 
 ---
 
-## Smart Skip Rules
+### Smart Skip Rules (summary)
 
-### القاعدة 1: WebP/AVIF → نفس الصيغة
-
-| Mode | النتيجة | السبب |
-|------|---------|-------|
-| Smart | SKIP | إعادة encode تدهور الجودة |
-| Force | CONVERT | Force conversion |
-| Optimize | SKIP | غير مدعوم |
-
----
-
-### القاعدة 2: HEIC/HEIF → نفس الصيغة
-
-| Mode | النتيجة | السبب |
-|------|---------|-------|
-| Smart | SKIP | Already optimal (H.265 based) |
-| Force | CONVERT | Force conversion |
-| Optimize | SKIP | Already highly optimized |
+- **WebP/AVIF → same format:** Smart/Optimize → SKIP; Force → CONVERT
+- **HEIC/HEIF → same format:** Smart/Optimize → SKIP; Force → CONVERT
+- **JPEG → PNG:** Smart/Optimize → SKIP; Force → CONVERT
+- **JPEG → JPEG:** Smart → SKIP; Force → CONVERT; Optimize → OPTIMIZE if ≥5% smaller
+- **PNG → PNG:** Smart/Optimize → OPTIMIZE if smaller; Force → CONVERT
+- **Animated GIF (Optimize):** SKIP (keeps animation)
 
 ---
 
-### القاعدة 3: JPEG → PNG
+### Full Conversion Matrix
 
-| Mode | النتيجة | السبب |
-|------|---------|-------|
-| Smart | SKIP | زيادة الحجم بدون فائدة |
-| Force | CONVERT | Force conversion |
-| Optimize | SKIP | صيغ مختلفة |
-
----
-
-### القاعدة 4: JPEG → JPEG
-
-| Mode | النتيجة | السبب |
-|------|---------|-------|
-| Smart | SKIP | إعادة encode تدهور الجودة |
-| Force | CONVERT | Force conversion |
-| Optimize | OPTIMIZE | إذا قل الحجم 5%+ |
-
----
-
-### القاعدة 5: PNG → PNG
-
-| Mode | النتيجة | السبب |
-|------|---------|-------|
-| Smart | OPTIMIZE | إذا قل الحجم (lossless) |
-| Force | CONVERT | Force conversion |
-| Optimize | OPTIMIZE | إذا قل الحجم |
-
----
-
-### القاعدة 6: Animated GIF → GIF (Optimize Mode)
-
-| Mode | النتيجة | السبب |
-|------|---------|-------|
-| Optimize | SKIP | Animated GIF optimization would break animation |
-| Smart | CONVERT | Static GIF → WebP (saves up to 92%) |
-| Force | CONVERT | Force conversion |
-
----
-
-## مصفوفة التحويل الشاملة
-
-| Input | Output | Mode | AutoOutput | النتيجة |
-|-------|--------|------|-------------|---------|
+| Input | Output | Mode | AutoOutput | Result |
+|-------|--------|------|------------|--------|
 | JPEG | WebP | Smart | false | CONVERT |
 | PNG | WebP | Smart | false | CONVERT |
 | WebP | WebP | Smart | false | SKIP |
 | AVIF | AVIF | Smart | false | SKIP |
-| HEIC | HEIC | Smart | false | SKIP |
-| HEIF | HEIF | Smart | false | SKIP |
+| HEIC/HEIF | same | Smart | false | SKIP |
 | JPEG | JPEG | Smart | false | SKIP |
 | JPEG | PNG | Smart | false | SKIP |
 | PNG | PNG | Smart | false | OPTIMIZE/SKIP |
-| WebP | WebP | Force | false | CONVERT |
-| AVIF | AVIF | Force | false | CONVERT |
-| HEIC | HEIC | Force | false | CONVERT |
-| HEIF | HEIF | Force | false | CONVERT |
-| JPEG | JPEG | Force | false | CONVERT |
-| JPEG | PNG | Force | false | CONVERT |
-| PNG | PNG | Force | false | CONVERT |
+| WebP/AVIF/HEIC/HEIF | same | Force | false | CONVERT |
 | PNG | PNG | Optimize | false | OPTIMIZE/SKIP |
 | JPEG | JPEG | Optimize | false | OPTIMIZE/SKIP |
-| WebP | WebP | Optimize | false | SKIP |
-| AVIF | AVIF | Optimize | false | SKIP |
-| HEIC | HEIC | Optimize | false | SKIP |
-| HEIF | HEIF | Optimize | false | SKIP |
+| WebP/AVIF/HEIC/HEIF | same | Optimize | false | SKIP |
 | Animated GIF | GIF | Optimize | false | SKIP |
 | Static GIF | GIF | Optimize | false | CONVERT (WebP) |
-| JPEG | ? | Smart | true | CONVERT (WebP) |
-| PNG | ? | Smart | true | CONVERT (WebP) |
-| WebP | ? | Smart | true | SKIP |
-| AVIF | ? | Smart | true | SKIP |
-| HEIC | ? | Smart | true | CONVERT (AVIF) |
-| HEIF | ? | Smart | true | CONVERT (AVIF) |
-| WebP | ? | Force | true | CONVERT (WebP) |
-| AVIF | ? | Force | true | CONVERT (AVIF) |
+| JPEG/PNG | ? | Smart | true | CONVERT (WebP) |
+| WebP/AVIF | ? | Smart | true | SKIP |
+| HEIC/HEIF | ? | Smart | true | CONVERT (AVIF) |
+| WebP/AVIF | ? | Force | true | CONVERT |
 
 ---
 
-## سيناريوهات عملية
+### Example Scenarios
 
-### السيناريو 1: تحويل جميع الصور لـ WebP
-
+**All images to WebP:**
 ```bash
 pixify-pro -i ./photos -o ./webp_output
 ```
 
-**النتيجة:** JPEG/PNG → WebP, WebP → SKIP
-
----
-
-### السيناريو 2: تحويل لـ AVIF مع مسح تكراري
-
+**To AVIF, recursive:**
 ```bash
 pixify-pro -i ./photos -o ./avif_output -f avif -r
 ```
 
-**النتيجة:** جميع الصور في المجلد والمجلدات الفرعية → AVIF (عمال تلقائي)
-
----
-
-### السيناريو 3: ضغط PNG فقط (نفس الصيغة)
-
+**PNG optimize only (same format):**
 ```bash
 pixify-pro -i ./png_images -o ./optimized -f png --mode optimize
 ```
 
-**النتيجة:** PNG → PNG (إذا قل الحجم)
-
----
-
-### السيناريو 4: إعادة encode WebP بجودة أعلى
-
+**Re-encode WebP (Force):**
 ```bash
 pixify-pro -i ./webp_images -o ./reencoded -f webp --mode force
 ```
 
-**النتيجة:** WebP → WebP (Force)
-
----
-
-### السيناريو 5: Auto Output مع Force Mode
-
-```bash
-pixify-pro -i ./mixed_images -o ./output -f auto --mode force
-```
-
-**النتيجة:** اختيار تلقائي مع Force conversion
-
----
-
-### السيناريو 6: تحسين JPEG بدون تغيير الصيغة
-
-```bash
-pixify-pro -i ./jpg_images -o ./optimized -f jpeg --mode optimize
-```
-
-**النتيجة:** JPEG → JPEG (إذا قل الحجم 5%+)
-
----
-
-### السيناريو 7: تحويل HEIC لـ AVIF
-
+**HEIC → AVIF:**
 ```bash
 pixify-pro -i ./heic_images -o ./avif_output -f avif
 ```
 
-**النتيجة:** HEIC → AVIF
-
----
-
-## الأخطاء الشائعة
-
-### خطأ: "Invalid output format"
-
-**السبب:** صيغة غير مدعومة
-
-**الحل:** استخدم: `webp`, `jpeg`, `png`, `avif`, `heic`, `heif`, `tiff`, `gif`, `bmp`, `auto`
-
----
-
-### خطأ: "Invalid processing mode"
-
-**السبب:** Mode غير صحيح
-
-**الحل:** استخدم: `smart`, `force`, `optimize`
-
----
-
-### خطأ: "no encoder registered for format"
-
-**السبب:** Pro encoder غير مفعّل
-
-**الحل:** تأكد من استدعاء `pro.EnableProFeatures()` (يحدث تلقائياً في CLI)
-
----
-
-### خطأ: "libvips initialization failed"
-
-**السبب:** libvips غير مثبت أو DLL مفقود
-
-**الحل:**
-
-**Linux:**
+**JPEG optimize (same format):**
 ```bash
-sudo apt install libvips-dev
+pixify-pro -i ./jpg_images -o ./optimized -f jpeg --mode optimize
 ```
 
-**macOS:**
-```bash
-brew install vips
-```
+---
 
-**Windows:** راجع [دليل التثبيت](https://github.com/Mahammed-Gaber/pixify/blob/main/docs/install-libvips.md)
+### Common Errors
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| Invalid output format | Unsupported format | Use: `webp`, `jpeg`, `png`, `avif`, `heic`, `heif`, `tiff`, `gif`, `bmp`, `auto` |
+| Invalid processing mode | Wrong mode | Use: `smart`, `force`, `optimize` |
+| no encoder registered for format | Pro build or license issue | Reinstall from [getpixify.com](https://getpixify.com) or contact support |
+| libvips initialization failed | libvips missing | Install: Linux `sudo apt install libvips-dev`, macOS `brew install vips`, Windows see [install guide](https://github.com/Mahammed-Gaber/pixify/blob/main/docs/install-libvips.md) |
 
 ---
 
-## Metadata Handling
+### Metadata
 
-### السلوك الافتراضي
-
-**إزالة metadata افتراضيًا في جميع المودات:**
-- Smart Mode: ✅ Metadata يُزال
-- Force Mode: ✅ Metadata يُزال
-- Optimize Mode: ✅ Metadata يُزال (افتراضي)
-
-**السبب:**
-- تقليل حجم الملف (10-50 KB لكل صورة)
-- الخصوصية (إزالة معلومات GPS والموقع)
-- الأمان (إزالة معلومات حساسة)
-
-### الاحتفاظ بـ Metadata
-
-**متاح فقط في Optimize Mode:**
-
-```bash
-# ضغط PNG مع الاحتفاظ بـ metadata
-pixify-pro -i ./images -o ./output -f png --mode optimize --keep-metadata
-```
-
-**متى تستخدمه:**
-- تريد الاحتفاظ بمعلومات الكاميرا (EXIF)
-- تريد الاحتفاظ بمعلومات GPS
-- تريد الاحتفاظ بتاريخ التصوير
-- تريد الاحتفاظ بـ Color Profile
-
-**ملاحظة:** `--keep-metadata` يعمل فقط مع `--mode optimize`. في Smart و Force Mode، metadata يُزال دائماً.
+- **Default:** metadata is removed in all modes (smaller files, privacy).
+- **Keep metadata:** only in Optimize mode: `--mode optimize --keep-metadata`. Not available in Smart/Force.
 
 ---
 
-## ملاحظات مهمة
+### Important Notes
 
-1. **Quality:** قابل للتعديل (افتراضي 80)
-2. **Workers:** تلقائي في Pro — يستخدم NumCPU (كل الأنوية). لا يوجد خيار `-w/--workers`
-3. **SkipExisting:** يعمل في جميع المودات (افتراضي: true)
-4. **Auto Output:** متاح فقط في Pro
-5. **Processing Modes:** متاحة فقط في Pro
-6. **Metadata:** يُزال افتراضيًا في جميع المودات (يمكن الاحتفاظ به فقط في Optimize Mode مع `--keep-metadata`)
-7. **كشف التعارض:** عند عدم استخدام `--keep-structure` ولا `--inplace`، إذا كان أكثر من ملف سيُكتب بنفس الاسم في الإخراج، يُرفض التشغيل مع اقتراح استخدام `--keep-structure` أو `--inplace`
+1. **Quality:** configurable (default 80)
+2. **Workers:** automatic in Pro (NumCPU); no `-w/--workers`
+3. **SkipExisting:** works in all modes (default: true)
+4. **Name clashes:** if multiple files would write to the same output path, the run is rejected; use `--keep-structure` or `--inplace` as needed
 
 ---
 
-## الإحصائيات النهائية
-
-بعد انتهاء المعالجة، يعرض البرنامج:
+### Report (after run)
 
 ```
 Done 420 images in 1m21.745896388s
@@ -507,22 +288,222 @@ Saved:        53.5 MB (82.1%)
 
 ---
 
-## المتطلبات
+### Requirements (to run Pixify Pro)
 
-- Go 1.25.4 أو أحدث
-- libvips (C library) - يجب تثبيته على النظام
-- CGO مفعّل (`CGO_ENABLED=1`)
-- Pixify Pro license (للاستخدام التجاري)
-
----
-
-## الترخيص
-
-© 2025 Mohammed Gaber • Proprietary • Commercial License Required
-
-Pixify Pro — Professional Image Converter
+- **libvips** installed on your system (same as Free).  
+  Linux: `sudo apt install libvips-dev` · macOS: `brew install vips` · Windows: see [install guide](https://github.com/Mahammed-Gaber/pixify/blob/main/docs/install-libvips.md).
+- **Pixify Pro license** — purchase and activate at [getpixify.com](https://getpixify.com). Required for commercial use.
 
 ---
 
-تم إنشاء هذا الدليل بناءً على الكود الحالي في `pixify-core` و `Pixify-Pro`.
+**© 2025 Mohammed Gaber • Proprietary • Commercial License Required**
 
+</div>
+
+---
+
+<div id="arabic" dir="rtl">
+
+## العربية
+
+### نظرة عامة
+
+Pixify Pro هو النسخة الاحترافية من Pixify: **جميع الصيغ الحديثة** (WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP)، أوضاع معالجة (Smart, Force, Optimize)، مسح تكراري، حفظ الهيكل، مدخلات متعددة، ترخيص ورموز API من لوحة التحكم.
+
+**للأمر المناسب بسرعة:** راجع [مرجع الأوامر](../command-reference.md) — «أريد أن…» → الأمر، والتوليفات الصحيحة.
+
+---
+
+### الأوامر الأساسية
+
+#### الاستخدام الأساسي
+
+```bash
+pixify-pro -i ./images -o ./output
+```
+
+#### تحديد صيغة الإخراج
+
+```bash
+pixify-pro -i ./images -o ./output -f webp    # WebP (افتراضي)
+pixify-pro -i ./images -o ./output -f jpeg    # JPEG
+pixify-pro -i ./images -o ./output -f png     # PNG
+pixify-pro -i ./images -o ./output -f avif    # AVIF
+pixify-pro -i ./images -o ./output -f heic    # HEIC
+pixify-pro -i ./images -o ./output -f heif    # HEIF
+pixify-pro -i ./images -o ./output -f tiff    # TIFF
+pixify-pro -i ./images -o ./output -f gif     # GIF
+pixify-pro -i ./images -o ./output -f bmp     # BMP
+pixify-pro -i ./images -o ./output -f auto    # اختيار تلقائي
+```
+
+#### مسح تكراري والحفاظ على الهيكل
+
+```bash
+# مسح المجلدات الفرعية (-r أو --recursive)
+pixify-pro -i ./photos -o ./output -r
+
+# الحفاظ على هيكل المجلدات في الإخراج (افتراضي: true)
+pixify-pro -i ./photos -o ./dist --keep-structure
+
+# حفظ بجانب الأصل (فقط مع --mode optimize)
+pixify-pro -i ./images -o ./out --mode optimize --inplace
+```
+
+#### مدخلات متعددة
+
+```bash
+pixify-pro -i ./assets -i ./public -o ./dist -f webp
+```
+
+#### هيكل المخرج: متى تحصل على ماذا؟
+
+| الهدف | الأمر | النتيجة |
+|-------|-------|---------|
+| مجلد واحد → نفس الهيكل تحت المخرج | `-i ./photos -o ./out -r` | `out/صورة.webp`, `out/فرعي/صورة.webp` |
+| مجلدات متعددة → مجلد فرعي لكل مدخل | `-i ./assets -i ./public -o ./dist` | `dist/assets/...`, `dist/public/...` |
+| مجلدات متعددة → مسطح في جذر المخرج | `-i ./dir1 -i ./dir2 -o ./out --keep-structure=false` | `out/صورة1.webp`, `out/صورة2.webp` |
+| الكتابة بجانب كل ملف أصلي | `-i ./images -o ./x --mode optimize --inplace` | الملفات تبقى في `./images/` بجانب الأصل |
+
+#### أوضاع المعالجة
+
+```bash
+pixify-pro -i ./images -o ./output --mode smart    # افتراضي
+pixify-pro -i ./images -o ./output --mode force    # إجبار التحويل
+pixify-pro -i ./images -o ./output --mode optimize # ضغط فقط، نفس الصيغة
+```
+
+#### Auto Output
+
+```bash
+pixify-pro -i ./images -o ./output -f auto
+# أو
+pixify-pro -i ./images -o ./output --auto-output
+```
+
+#### التفعيل ورموز API
+
+```bash
+# تفعيل الترخيص (مرة واحدة على الجهاز — Native فقط)
+pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX
+```
+
+**استخدام Pro في WSL أو VM أو Docker أو CI:**  
+يكفي **رمز (Token)**: تعيين `export PIXIFY_TOKEN=your_token` أو حفظه مرة واحدة (WSL/VM): `pixify-pro auth --token your_token` — يُحفظ في `~/.pixify/config.json`. إنشاء الرموز من [لوحة التحكم](https://getpixify.com) فقط؛ الرمز الكامل يُعرض **مرة واحدة**. للتفاصيل: [الرموز والبيئات](tokens-and-environments.md).
+
+#### دمج الأوامر
+
+```bash
+pixify-pro -i ./images -o ./output -f avif -r --keep-structure
+```
+
+**ملاحظة:** العمال (Workers) تُضبط تلقائياً في Pro (NumCPU). لا يوجد خيار `-w/--workers`.
+
+---
+
+### الصيغ المدعومة
+
+**المدخلة:** JPEG, PNG, WebP, AVIF, HEIC, HEIF, TIFF, GIF, BMP  
+
+**المخرجة:** WebP (افتراضي), JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP, Auto
+
+---
+
+### أوضاع المعالجة (تفصيل)
+
+#### Smart (افتراضي)
+
+- كشف تلقائي لصيغة الإدخال، تحسين أو تخطي حسب الفائدة. للاستخدام العادي.
+
+#### Force
+
+- إجبار التحويل للصيغة المحددة. للإعادة encode بجودة مختلفة أو إزالة metadata.
+
+#### Optimize
+
+- نفس الصيغة مع إعادة ضغط. PNG/JPEG: تحسين إذا قل الحجم. WebP/AVIF/HEIC/HEIF: SKIP. **Metadata:** يُزال افتراضيًا؛ `--keep-metadata` للاحتفاظ به (فقط مع Optimize).
+
+---
+
+### قواعد Smart Skip (ملخص)
+
+- WebP/AVIF → نفس الصيغة: Smart/Optimize → SKIP؛ Force → CONVERT
+- HEIC/HEIF → نفس الصيغة: Smart/Optimize → SKIP؛ Force → CONVERT
+- JPEG → PNG: Smart/Optimize → SKIP؛ Force → CONVERT
+- JPEG → JPEG: Smart → SKIP؛ Force → CONVERT؛ Optimize → OPTIMIZE إذا قل 5%+
+- PNG → PNG: Smart/Optimize → OPTIMIZE إذا قل الحجم؛ Force → CONVERT
+- Animated GIF (Optimize): SKIP
+
+---
+
+### مصفوفة التحويل الشاملة
+
+| Input | Output | Mode | AutoOutput | النتيجة |
+|-------|--------|------|-------------|---------|
+| JPEG | WebP | Smart | false | CONVERT |
+| PNG | WebP | Smart | false | CONVERT |
+| WebP | WebP | Smart | false | SKIP |
+| AVIF | AVIF | Smart | false | SKIP |
+| HEIC/HEIF | same | Smart | false | SKIP |
+| JPEG | JPEG | Smart | false | SKIP |
+| JPEG | PNG | Smart | false | SKIP |
+| PNG | PNG | Smart | false | OPTIMIZE/SKIP |
+| WebP/AVIF/HEIC/HEIF | same | Force | false | CONVERT |
+| PNG | PNG | Optimize | false | OPTIMIZE/SKIP |
+| JPEG | JPEG | Optimize | false | OPTIMIZE/SKIP |
+| WebP/AVIF/HEIC/HEIF | same | Optimize | false | SKIP |
+| Animated GIF | GIF | Optimize | false | SKIP |
+| Static GIF | GIF | Optimize | false | CONVERT (WebP) |
+| JPEG/PNG | ? | Smart | true | CONVERT (WebP) |
+| WebP/AVIF | ? | Smart | true | SKIP |
+| HEIC/HEIF | ? | Smart | true | CONVERT (AVIF) |
+| WebP/AVIF | ? | Force | true | CONVERT |
+
+---
+
+### سيناريوهات عملية
+
+تحويل الكل لـ WebP، تحويل لـ AVIF مع -r، ضغط PNG فقط، إعادة encode WebP (Force)، HEIC → AVIF، تحسين JPEG — الأوامر كما في القسم الإنجليزي أعلاه.
+
+---
+
+### الأخطاء الشائعة
+
+| الخطأ | السبب | الحل |
+|-------|-------|-----|
+| Invalid output format | صيغة غير مدعومة | استخدم: webp, jpeg, png, avif, heic, heif, tiff, gif, bmp, auto |
+| Invalid processing mode | Mode غير صحيح | استخدم: smart, force, optimize |
+| no encoder registered | مشكلة تثبيت أو ترخيص Pro | إعادة التثبيت من [getpixify.com](https://getpixify.com) أو التواصل مع الدعم |
+| libvips initialization failed | libvips غير مثبت | Linux: apt install libvips-dev؛ macOS: brew install vips؛ Windows: [دليل التثبيت](https://github.com/Mahammed-Gaber/pixify/blob/main/docs/install-libvips.md) |
+
+---
+
+### Metadata
+
+الافتراضي: إزالة metadata في كل المودات. الاحتفاظ به: فقط مع `--mode optimize --keep-metadata`.
+
+---
+
+### ملاحظات مهمة
+
+1. **Quality:** قابل للتعديل (افتراضي 80)
+2. **Workers:** تلقائي في Pro (NumCPU)، لا يوجد -w/--workers
+3. **SkipExisting:** يعمل في جميع المودات (افتراضي: true)
+4. **تعارض الأسماء:** استخدام --keep-structure أو --inplace عند الحاجة
+
+---
+
+### التقرير النهائي
+
+يعرض البرنامج بعد الانتهاء: Total images, Total before/after, Saved.
+
+---
+
+### المتطلبات والترخيص
+
+- **libvips** مثبت على النظام (مثل Free). Linux: apt install libvips-dev · macOS: brew install vips · Windows: [دليل التثبيت](https://github.com/Mahammed-Gaber/pixify/blob/main/docs/install-libvips.md).
+- **ترخيص Pixify Pro** — الشراء والتفعيل من [getpixify.com](https://getpixify.com). مطلوب للاستخدام التجاري.
+
+**© 2025 Mohammed Gaber • Proprietary • Commercial License Required**
+
+</div>

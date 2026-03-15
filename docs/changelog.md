@@ -1,3 +1,92 @@
+<div id="english" dir="ltr">
+
+**[English Version](#english) | [النسخة العربية](#arabic)**
+
+# Changelog
+
+## First Release — v1.0.0 (Free & Pro Together)
+
+The first release of Pixify includes both **Pixify Free** and **Pixify Pro**.
+
+---
+
+### Pixify Free (v1.0.0)
+
+#### Features
+
+- Convert JPG/PNG to WebP
+- Fixed quality 80
+- Real-time progress bar
+- Comprehensive statistics report
+- Parallel processing (auto workers)
+- Support for Windows, Linux, macOS
+- Fully offline operation
+
+#### Improvements
+
+- Performance and memory optimization
+- Clear error messages
+- Comprehensive help guide
+
+---
+
+### Pixify Pro (v1.0.0)
+
+#### Features
+
+- **Input/Output formats:** WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP + Auto
+- **Adjustable quality** (0–100)
+- **Processing modes:** Smart (default), Force, Optimize
+- **Recursive scan** (`-r`, `--recursive`) — process subdirectories
+- **Keep folder structure** (`--keep-structure`) in output
+- **Save next to original** (`--inplace`) with Optimize mode
+- **Multiple inputs** (`-i` repeatable) — e.g. `-i assets -i public -o dist`
+- **Collision detection** — reject when output filenames would clash, with clear guidance
+- **Symlink protection** — skip files outside input tree with warning
+- **License activation** — clear messages (machine limit, expired, etc.)
+- **API tokens for CI/CD & Docker** — stored securely (hashed); full token shown only once at creation; dashboard shows masked form (e.g. pix_****abcd), with alias, optional expiry, and revocation from dashboard
+- **Auto workers** — full CPU usage (NumCPU)
+
+#### Details
+
+- License key is partially masked in the UI; activation errors (e.g. 403) show the server message
+- API tokens: secure (hashed) storage, full token shown once at creation, dashboard shows masked form, revocation by token ID or license
+
+---
+
+## Latest updates — Tokens and environments (Pro)
+
+Pro now supports running **without a stored license file** in **ephemeral environments** (WSL, VM, Docker, CI, Cloud) using only a **token**.
+
+### What’s new
+
+- **Environment detection:** Pro detects whether you’re on a native PC, WSL, VM, Docker, CI, or Cloud and shows the right message for each.
+- **WSL and VM:** No license-key activation needed; a **token** is enough. You can save the token once to `~/.pixify/config.json` with **`pixify-pro auth --token YOUR_TOKEN`** and then run Pro without setting `PIXIFY_TOKEN` each time.
+- **`auth --token` command:** New command to save the token to the config file (validates when the server is reachable; if offline, saves with a warning).
+- **Token source:** In WSL/VM: config file first (`~/.pixify/config.json`), then `PIXIFY_TOKEN`. In Docker/CI/Cloud: `PIXIFY_TOKEN` only.
+- **License cache reset:** When the machine changes or Machine ID doesn’t match, the stored license file is removed automatically with: “License cache was reset due to system changes. Re-authenticating...” — then either reactivate (native) or use a token (WSL/VM/Docker/CI).
+
+**Full guide:** [Tokens and environments](pro/tokens-and-environments.md).
+
+---
+
+## Future Updates
+
+### Planned
+
+- Performance improvements
+- Additional format support
+- Graphical interface (optional)
+- Advanced image processing
+
+---
+
+[Back to Home](../README.md)
+
+</div>
+
+---
+
 <div id="arabic" dir="rtl">
 
 **[English Version](#english) | [النسخة العربية](#arabic)**
@@ -84,94 +173,5 @@
 [العودة إلى الصفحة الرئيسية](../README.md)
 
 ---
-
-</div>
-
----
-
-<div id="english" dir="ltr">
-
-**[English Version](#english) | [النسخة العربية](#arabic)**
-
-# Changelog
-
-## First Release — v1.0.0 (Free & Pro Together)
-
-The first release of Pixify includes both **Pixify Free** and **Pixify Pro**.
-
----
-
-### Pixify Free (v1.0.0)
-
-#### Features
-
-- Convert JPG/PNG to WebP
-- Fixed quality 80
-- Real-time progress bar
-- Comprehensive statistics report
-- Parallel processing (auto workers)
-- Support for Windows, Linux, macOS
-- Fully offline operation
-
-#### Improvements
-
-- Performance and memory optimization
-- Clear error messages
-- Comprehensive help guide
-
----
-
-### Pixify Pro (v1.0.0)
-
-#### Features
-
-- **Input/Output formats:** WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP + Auto
-- **Adjustable quality** (0–100)
-- **Processing modes:** Smart (default), Force, Optimize
-- **Recursive scan** (`-r`, `--recursive`) — process subdirectories
-- **Keep folder structure** (`--keep-structure`) in output
-- **Save next to original** (`--inplace`) with Optimize mode
-- **Multiple inputs** (`-i` repeatable) — e.g. `-i assets -i public -o dist`
-- **Collision detection** — reject when output filenames would clash, with clear guidance
-- **Symlink protection** — skip files outside input tree with warning
-- **License activation** — clear messages (machine limit, expired, etc.)
-- **API tokens for CI/CD & Docker** — stored securely (hashed); full token shown only once at creation; dashboard shows masked form (e.g. pix_****abcd), with alias, optional expiry, and revocation from dashboard
-- **Auto workers** — full CPU usage (NumCPU)
-
-#### Details
-
-- License key is partially masked in the UI; activation errors (e.g. 403) show the server message
-- API tokens: secure (hashed) storage, full token shown once at creation, dashboard shows masked form, revocation by token ID or license
-
----
-
-## Latest updates — Tokens and environments (Pro)
-
-Pro now supports running **without a stored license file** in **ephemeral environments** (WSL, VM, Docker, CI, Cloud) using only a **token**.
-
-### What’s new
-
-- **Environment detection:** Pro detects whether you’re on a native PC, WSL, VM, Docker, CI, or Cloud and shows the right message for each.
-- **WSL and VM:** No license-key activation needed; a **token** is enough. You can save the token once to `~/.pixify/config.json` with **`pixify-pro auth --token YOUR_TOKEN`** and then run Pro without setting `PIXIFY_TOKEN` each time.
-- **`auth --token` command:** New command to save the token to the config file (validates when the server is reachable; if offline, saves with a warning).
-- **Token source:** In WSL/VM: config file first (`~/.pixify/config.json`), then `PIXIFY_TOKEN`. In Docker/CI/Cloud: `PIXIFY_TOKEN` only.
-- **License cache reset:** When the machine changes or Machine ID doesn’t match, the stored license file is removed automatically with: “License cache was reset due to system changes. Re-authenticating...” — then either reactivate (native) or use a token (WSL/VM/Docker/CI).
-
-**Full guide:** [Tokens and environments](pro/tokens-and-environments.md).
-
----
-
-## Future Updates
-
-### Planned
-
-- Performance improvements
-- Additional format support
-- Graphical interface (optional)
-- Advanced image processing
-
----
-
-[Back to Home](../README.md)
 
 </div>

@@ -1,3 +1,134 @@
+<div id="english" dir="ltr">
+
+**[English Version](#english) | [النسخة العربية](#arabic)**
+
+# Pixify Pro - Complete Documentation
+
+## Overview
+
+Pixify Pro is the professional version of Pixify — available in the **first release** alongside Free. All advanced features for developers and large projects.
+
+**Full command and example guide:** [Pro Usage Guide](./pro/usage-guide.md)
+
+---
+
+## Additional Features (First Release)
+
+### Extra Formats
+
+- **Input/Output:** WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP
+- Auto format selection
+- Adjustable quality (0–100)
+
+### Folder & File Handling
+
+- **Recursive scan** (`-r`, `--recursive`) — process subdirectories
+- **Keep folder structure** (`--keep-structure`) in output
+- **Save next to original** (`--inplace`) with Optimize mode
+- **Multiple inputs** (`-i` repeatable) — e.g. `-i assets -i public -o dist`
+- **Collision detection** — reject when output filenames clash, with clear guidance
+
+### Licensing & Pro Use
+
+- **License activation** (native PC) with clear messages (machine limit, expired, etc.)
+- **Token for WSL, VM, Docker, CI, Cloud** — from `PIXIFY_TOKEN` or (WSL/VM) from `~/.pixify/config.json` via `pixify-pro auth --token YOUR_TOKEN`
+- **Auto workers** — full CPU usage (NumCPU)
+
+---
+
+## Installation
+
+### Requirements
+
+- **libvips** — Must be installed first
+- See [libvips Installation Guide](./install-libvips.md)
+
+### Download
+
+- **Pro:** [getpixify.com](https://getpixify.com) | [Pricing](https://getpixify.com/pricing)
+- **Free:** [Releases](https://github.com/Mahammed-Gaber/pixify/releases)
+
+---
+
+## Usage
+
+### Basic Syntax
+
+```bash
+pixify-pro -i <input_dir> -o <output_dir> [options]
+```
+
+### Quick Examples
+
+```bash
+# Convert to WebP (default)
+pixify-pro -i ./photos -o ./webp
+
+# Convert to AVIF with recursive scan
+pixify-pro -i ./photos -o ./avif -f avif -r
+
+# Multiple inputs + keep structure
+pixify-pro -i ./assets -i ./public -o ./dist --keep-structure
+
+# Activate license (native PC)
+pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX
+
+# Save token for WSL/VM (no license cache needed)
+pixify-pro auth --token YOUR_PRO_TOKEN
+```
+
+**For full command list and examples:** [Pro Usage Guide](./pro/usage-guide.md)
+
+---
+
+## Commands (Summary)
+
+| Flag | Description | Required |
+|------|-------------|----------|
+| `-i`, `--input` | Input directory (repeatable for multiple inputs) | Yes* |
+| `-o`, `--output` | Output directory (optional with `--inplace`) | Yes* |
+| `-f`, `--format` | Format (webp, jpeg, png, avif, heic, heif, tiff, gif, bmp, auto) | No |
+| `-r`, `--recursive` | Recursive scan of subdirectories | No |
+| `--keep-structure` | Keep folder structure in output | No (default: true) |
+| `--inplace` | Save next to original (Optimize mode only) | No |
+| `--activate` | Activate license (with `--license-key`) | No |
+| `auth --token <token>` | Save token to config (WSL/VM); see [Tokens and environments](pro/tokens-and-environments.md) | No |
+| `-h`, `--help` | Show help message | No |
+
+---
+
+## Supported Formats
+
+### Input
+- JPEG, PNG, WebP, AVIF, HEIC, HEIF, TIFF, GIF, BMP
+
+### Output
+- WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP, Auto
+
+---
+
+## Performance
+
+- **Speed:** Faster than Free with optimized settings
+- **Reduction:** Up to 90% size reduction
+- **Flexibility:** Full control over settings
+
+---
+
+## Support
+
+- Dedicated technical support
+- Regular updates
+- Priority for new features
+
+---
+
+[Back to Home](../README.md)
+
+</div>
+
+---
+
 <div id="arabic" dir="rtl">
 
 **[English Version](#english) | [النسخة العربية](#arabic)**
@@ -126,136 +257,5 @@ pixify-pro auth --token YOUR_PRO_TOKEN
 [العودة إلى الصفحة الرئيسية](../README.md)
 
 ---
-
-</div>
-
----
-
-<div id="english" dir="ltr">
-
-**[English Version](#english) | [النسخة العربية](#arabic)**
-
-# Pixify Pro - Complete Documentation
-
-## Overview
-
-Pixify Pro is the professional version of Pixify — available in the **first release** alongside Free. All advanced features for developers and large projects.
-
-**Full command and example guide:** [Pro Usage Guide](./pro/usage-guide.md)
-
----
-
-## Additional Features (First Release)
-
-### Extra Formats
-
-- **Input/Output:** WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP
-- Auto format selection
-- Adjustable quality (0–100)
-
-### Folder & File Handling
-
-- **Recursive scan** (`-r`, `--recursive`) — process subdirectories
-- **Keep folder structure** (`--keep-structure`) in output
-- **Save next to original** (`--inplace`) with Optimize mode
-- **Multiple inputs** (`-i` repeatable) — e.g. `-i assets -i public -o dist`
-- **Collision detection** — reject when output filenames clash, with clear guidance
-
-### Licensing & Pro Use
-
-- **License activation** (native PC) with clear messages (machine limit, expired, etc.)
-- **Token for WSL, VM, Docker, CI, Cloud** — from `PIXIFY_TOKEN` or (WSL/VM) from `~/.pixify/config.json` via `pixify-pro auth --token YOUR_TOKEN`
-- **Auto workers** — full CPU usage (NumCPU)
-
----
-
-## Installation
-
-### Requirements
-
-- **libvips** — Must be installed first
-- See [libvips Installation Guide](./install-libvips.md)
-
-### Download
-
-- **Pro:** [getpixify.com](https://getpixify.com) | [Pricing](https://getpixify.com/pricing)
-- **Free:** [Releases](https://github.com/Mahammed-Gaber/pixify/releases)
-
----
-
-## Usage
-
-### Basic Syntax
-
-```bash
-pixify-pro -i <input_dir> -o <output_dir> [options]
-```
-
-### Quick Examples
-
-```bash
-# Convert to WebP (default)
-pixify-pro -i ./photos -o ./webp
-
-# Convert to AVIF with recursive scan
-pixify-pro -i ./photos -o ./avif -f avif -r
-
-# Multiple inputs + keep structure
-pixify-pro -i ./assets -i ./public -o ./dist --keep-structure
-
-# Activate license (native PC)
-pixify-pro --activate --license-key PIXIFY-PRO-XXXX-XXXX-XXXX
-
-# Save token for WSL/VM (no license cache needed)
-pixify-pro auth --token YOUR_PRO_TOKEN
-```
-
-**For full command list and examples:** [Pro Usage Guide](./pro/usage-guide.md)
-
----
-
-## Commands (Summary)
-
-| Flag | Description | Required |
-|------|-------------|----------|
-| `-i`, `--input` | Input directory (repeatable for multiple inputs) | Yes* |
-| `-o`, `--output` | Output directory (optional with `--inplace`) | Yes* |
-| `-f`, `--format` | Format (webp, jpeg, png, avif, heic, heif, tiff, gif, bmp, auto) | No |
-| `-r`, `--recursive` | Recursive scan of subdirectories | No |
-| `--keep-structure` | Keep folder structure in output | No (default: true) |
-| `--inplace` | Save next to original (Optimize mode only) | No |
-| `--activate` | Activate license (with `--license-key`) | No |
-| `auth --token <token>` | Save token to config (WSL/VM); see [Tokens and environments](pro/tokens-and-environments.md) | No |
-| `-h`, `--help` | Show help message | No |
-
----
-
-## Supported Formats
-
-### Input
-- JPEG, PNG, WebP, AVIF, HEIC, HEIF, TIFF, GIF, BMP
-
-### Output
-- WebP, JPEG, PNG, AVIF, HEIC, HEIF, TIFF, GIF, BMP, Auto
-
----
-
-## Performance
-
-- **Speed:** Faster than Free with optimized settings
-- **Reduction:** Up to 90% size reduction
-- **Flexibility:** Full control over settings
-
----
-
-## Support
-
-- Dedicated technical support
-- Regular updates
-- Priority for new features
-
----
-
-[Back to Home](../README.md)
 
 </div>
