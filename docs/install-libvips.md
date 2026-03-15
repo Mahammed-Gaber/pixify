@@ -16,13 +16,13 @@ Pixify Free يتطلب مكتبة `libvips` لتشغيل عمليات تحويل
 
 1. قم بتحميل أحدث إصدار من [libvips Windows builds](https://github.com/libvips/build-win64-mxe/releases)
 
-   **روابط تحميل مباشرة (v8.17.3):**
+   **روابط تحميل مباشرة (v8.18.0):**
    
-   - **نسخة Web (موصى بها لـ Pixify):** [vips-dev-w64-web-8.17.3.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.17.3/vips-dev-w64-web-8.17.3.zip) - ~11 MB
+   - **نسخة Web (موصى بها لـ Pixify):** [vips-dev-w64-web-8.18.0.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.0/vips-dev-w64-web-8.18.0.zip) - ~11 MB
      - تحتوي على دعم WebP (كافية لـ Pixify Free)
      - حجم أصغر وأسرع في التحميل
    
-   - **نسخة كاملة (اختياري):** [vips-dev-w64-all-8.17.3.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.17.3/vips-dev-w64-all-8.17.3.zip) - ~20 MB
+   - **نسخة كاملة (اختياري):** [vips-dev-w64-all-8.18.0.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.0/vips-dev-w64-all-8.18.0.zip) - ~20 MB
      - تحتوي على جميع الصيغ والدعم الكامل
      - استخدمها إذا كنت تحتاج دعم صيغ إضافية
 
@@ -189,13 +189,13 @@ Pixify Free requires the `libvips` library to run image conversion operations. T
 
 1. Download the latest version from [libvips Windows builds](https://github.com/libvips/build-win64-mxe/releases)
 
-   **Direct download links (v8.17.3):**
+   **Direct download links (v8.18.0):**
    
-   - **Web version (recommended for Pixify):** [vips-dev-w64-web-8.17.3.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.17.3/vips-dev-w64-web-8.17.3.zip) - ~11 MB
+   - **Web version (recommended for Pixify):** [vips-dev-w64-web-8.18.0.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.0/vips-dev-w64-web-8.18.0.zip) - ~11 MB
      - Contains WebP support (sufficient for Pixify Free)
      - Smaller size and faster download
    
-   - **Full version (optional):** [vips-dev-w64-all-8.17.3.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.17.3/vips-dev-w64-all-8.17.3.zip) - ~20 MB
+   - **Full version (optional):** [vips-dev-w64-all-8.18.0.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.0/vips-dev-w64-all-8.18.0.zip) - ~20 MB
      - Contains all formats and full support
      - Use if you need additional format support
 
