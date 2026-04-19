@@ -70,6 +70,66 @@ pixify-free --help
 pixify-pro --help
 ```
 
+### 3. Pixify Pro in CI/CD and containers (token-based)
+
+For **WSL / Docker / CI / Cloud**, Pixify Pro uses **tokens**, not license keys.
+
+1. Create a Pro token from your [getpixify.com](https://getpixify.com) dashboard.  
+2. Expose it as `PIXIFY_TOKEN` in your environment (or GitHub Secret).  
+3. **Optional (WSL/VM):** Save the token once with: `pixify-pro auth --token YOUR_TOKEN` (writes to `~/.pixify/config.json`); then you can run Pro without setting `PIXIFY_TOKEN` each time.
+
+#### GitHub Actions example
+
+On `ubuntu-latest`, Homebrew is not pre-installed. Install it, then add it to `PATH` in the same step so `brew` and `pixify-pro` are available:
+
+```yaml
+name: Optimize images with Pixify Pro
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    env:
+      PIXIFY_TOKEN: ${{ secrets.PIXIFY_TOKEN }}
+      PIXIFY_SERVER_URL: https://license.pixify.app
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Homebrew
+        run: |
+          NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
+          echo "/home/linuxbrew/.linuxbrew/sbin" >> $GITHUB_PATH
+
+      - name: Tap and install Pixify Pro
+        run: |
+          brew tap mahammed-gaber/pixify
+          brew install pixify-pro
+
+      - name: Run Pixify Pro
+        run: |
+          pixify-pro -i ./assets -o ./assets-optimized -r --keep-structure
+```
+
+**Note:** Add your Pro token as a repository secret named `PIXIFY_TOKEN` (Settings → Secrets and variables → Actions). If your server URL differs, set the `PIXIFY_SERVER_URL` secret or change the `env` value above.
+
+#### Docker example
+
+```bash
+docker run --rm \
+  -e PIXIFY_TOKEN=YOUR_PRO_TOKEN \
+  -e PIXIFY_SERVER_URL=https://license.pixify.app \
+  -v "$PWD:/workdir" \
+  ghcr.io/pixifyapp/pixify-pro:latest \
+  pixify-pro -i /workdir/assets -o /workdir/assets-optimized -r --keep-structure
+```
+
+For more details: **[Tokens and environments (Pro)](docs/pro/tokens-and-environments.md)**.
+
 **[Command Reference (command assistant)](./docs/command-reference.md)** — “I want to…” → command. **Pro in WSL or Docker/CI:** [Tokens and environments](docs/pro/tokens-and-environments.md).
 
 ---
@@ -196,6 +256,54 @@ pixify-pro -i ./photos -o ./output -r --keep-structure
 pixify-free --help
 pixify-pro --help
 ```
+
+### 3. استخدام Pixify Pro في CI/CD والحاويات (باستخدام Token)
+
+في بيئات **WSL / Docker / CI / Cloud**، تعتمد نسخة Pro على **الرموز (Tokens)** وليس مفاتيح التراخيص مباشرة.
+
+1. أنشئ رمز Pro من لوحة التحكم في [getpixify.com](https://getpixify.com).  
+2. عرّفه في متغير البيئة `PIXIFY_TOKEN` (أو كـ GitHub Secret في CI).
+
+#### مثال GitHub Actions
+
+```yaml
+name: Optimize images with Pixify Pro
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    env:
+      PIXIFY_TOKEN: ${{ secrets.PIXIFY_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Pixify Pro via Homebrew
+        run: |
+          brew tap mahammed-gaber/pixify
+          brew install pixify-pro
+
+      - name: Run Pixify Pro
+        run: |
+          pixify-pro -i ./assets -o ./assets-optimized -r --keep-structure
+```
+
+#### مثال Docker
+
+```bash
+docker run --rm \
+  -e PIXIFY_TOKEN=YOUR_PRO_TOKEN \
+  -e PIXIFY_SERVER_URL=https://license.pixify.app \
+  -v "$PWD:/workdir" \
+  ghcr.io/pixifyapp/pixify-pro:latest \
+  pixify-pro -i /workdir/assets -o /workdir/assets-optimized -r --keep-structure
+```
+
+لمزيد من التفاصيل: **[الرموز والبيئات (Pro)](docs/pro/tokens-and-environments.md)**.
 
 **[مرجع الأوامر](./docs/command-reference.md)** — «أريد أن…» → الأمر. **استخدام Pro في WSL أو Docker/CI:** [الرموز والبيئات](docs/pro/tokens-and-environments.md).
 
