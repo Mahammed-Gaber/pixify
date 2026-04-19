@@ -49,9 +49,18 @@ brew install vips
 
 # Windows
 # See full installation guide below
+# PowerShell: irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-vips.ps1 | iex
 ```
 
 **[Full libvips installation guide](./docs/install-libvips.md)** — Step-by-step instructions and download links for every platform.
+
+**Windows:** in PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-vips.ps1 | iex
+```
+
+For optional script flags (`-AllBuild`, `-Force`, etc.), save the script and run it locally — see the [install guide](./docs/install-libvips.md) (no Git clone required).
 
 ### 2. Run Pixify
 
@@ -236,9 +245,18 @@ brew install vips
 
 # Windows
 # راجع دليل التثبيت الكامل أدناه
+# أو سطر واحد في PowerShell: irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-vips.ps1 | iex
 ```
 
 **[دليل تثبيت libvips الكامل](./docs/install-libvips.md)** — تعليمات مفصلة وروابط تحميل لكل نظام.
+
+**Windows:** في PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-vips.ps1 | iex
+```
+
+لخيارات السكربت (`-AllBuild`، `-Force`، …) احفظ الملف وشغّله محلياً — راجع [دليل التثبيت](./docs/install-libvips.md) (لا حاجة لاستنساخ مستودع).
 
 ### 2. تشغيل Pixify
 

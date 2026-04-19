@@ -32,6 +32,33 @@ Pixify Free requires the `libvips` library to run image conversion operations. T
    - Add `C:\vips\bin` to `Path` in "System variables"
    - Restart Terminal
 
+### Automated install (PowerShell — faster download)
+
+The official script is published on GitHub (same file as the documentation site references). It:
+
+- Prefers **BITS** (`Start-BitsTransfer`) or **curl** for fast downloads, then falls back to `Invoke-WebRequest`
+- Installs under `%USERPROFILE%\.pixify\vips` and adds the `bin` folder to your **user** PATH
+- Skips re-download if the same build is already installed (use `-Force` to reinstall)
+
+**Recommended:** open **PowerShell as Administrator** if policy blocks scripts, then run:
+
+```powershell
+irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-vips.ps1 | iex
+```
+
+If execution policy errors appear, run once: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, then run the line above again.
+
+**Optional flags** (`-AllBuild`, `-Force`, `-VipsVersion`): the one-liner cannot pass arguments. Save the script and run it locally (no Git clone needed):
+
+```powershell
+irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-vips.ps1 -OutFile "$env:TEMP\install-vips.ps1"
+& "$env:TEMP\install-vips.ps1" -AllBuild
+```
+
+Examples: `-AllBuild` (larger “all” formats zip), `-Force` (reinstall), `-VipsVersion 8.18.0` (pin version).
+
+Then open a **new** terminal and run `vips --version`.
+
 ### Video Tutorial
 
 📹 **Watch this video** to see how to install libvips on Windows step by step:
@@ -121,9 +148,9 @@ vips --version
 
 ### Windows: "vips.dll not found"
 
-- Make sure `C:\vips\bin` is added to `PATH`
+- Make sure the libvips `bin` folder is on `PATH` (e.g. `C:\vips\bin` after a manual install, or `%USERPROFILE%\.pixify\vips\vips-dev-8.18\bin` after `install-vips.ps1`)
 - Restart Terminal after modifying `PATH`
-- Verify `vips.dll` exists in `C:\vips\bin`
+- Verify `vips.dll` exists in that `bin` folder
 
 ### Linux: "pkg-config: command not found"
 
@@ -202,6 +229,33 @@ Pixify Free يتطلب مكتبة `libvips` لتشغيل عمليات تحويل
    - افتح "System Properties" > "Environment Variables"
    - أضف `C:\vips\bin` إلى `Path` في "System variables"
    - أعد تشغيل Terminal
+
+### تثبيت تلقائي (PowerShell — تحميل أسرع)
+
+السكربت الرسمي منشور على GitHub (نفس الملف المذكور في التوثيق). يقوم بـ:
+
+- تفضيل **BITS** أو **curl** للتحميل السريع، ثم الرجوع إلى `Invoke-WebRequest` عند الحاجة
+- التثبيت تحت `%USERPROFILE%\.pixify\vips` وإضافة مجلد `bin` إلى **PATH** للمستخدم
+- تخطي إعادة التحميل إذا كان نفس الإصدار مثبتاً (استخدم `-Force` لإعادة التثبيت)
+
+**الموصى به:** افتح **PowerShell** (كمسؤول إذا منع السياسة التشغيل)، ثم:
+
+```powershell
+irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-vips.ps1 | iex
+```
+
+إذا ظهر خطأ بسياسة التنفيذ، نفّذ مرة واحدة: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` ثم أعد تشغيل الأمر أعلاه.
+
+**خيارات اختيارية** (`-AllBuild`، `-Force`، `-VipsVersion`): أمر السطر الواحد لا يمرّر معاملات. احفظ السكربت ثم شغّله محلياً (بدون استنساخ أي مستودع):
+
+```powershell
+irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-vips.ps1 -OutFile "$env:TEMP\install-vips.ps1"
+& "$env:TEMP\install-vips.ps1" -AllBuild
+```
+
+أمثلة: `-AllBuild` (نسخة all الأكبر)، `-Force` (إعادة تثبيت)، `-VipsVersion 8.18.0` (إصدار محدد).
+
+ثم افتح **طرفية جديدة** وشغّل `vips --version`.
 
 ### فيديو توضيحي
 
@@ -292,9 +346,9 @@ vips --version
 
 ### Windows: "vips.dll not found"
 
-- تأكد من إضافة `C:\vips\bin` إلى `PATH`
+- تأكد من أن مجلد `bin` الخاص بـ libvips مضاف إلى `PATH` (مثلاً `C:\vips\bin` بعد التثبيت اليدوي، أو `%USERPROFILE%\.pixify\vips\vips-dev-8.18\bin` بعد تشغيل `install-vips.ps1`)
 - أعد تشغيل Terminal بعد تعديل `PATH`
-- تحقق من وجود `vips.dll` في `C:\vips\bin`
+- تحقق من وجود `vips.dll` داخل مجلد `bin` نفسه
 
 ### Linux: "pkg-config: command not found"
 
