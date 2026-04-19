@@ -112,8 +112,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6.0.2
-        with:
-          fetch-depth: 0
 
       - name: Set up Homebrew
         run: |
@@ -329,8 +327,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6.0.2
-        with:
-          fetch-depth: 0
 
       - name: Set up Homebrew
         run: |
