@@ -87,44 +87,66 @@ For **WSL / Docker / CI / Cloud**, Pixify Pro uses **tokens**, not license keys.
 2. Expose it as `PIXIFY_TOKEN` in your environment (or GitHub Secret).  
 3. **Optional (WSL/VM):** Save the token once with: `pixify-pro auth --token YOUR_TOKEN` (writes to `~/.pixify/config.json`); then you can run Pro without setting `PIXIFY_TOKEN` each time.
 
-#### GitHub Actions example
+#### GitHub Actions example (token)
 
-On `ubuntu-latest`, Homebrew is not pre-installed. Install it, then add it to `PATH` in the same step so `brew` and `pixify-pro` are available:
+Use a repository secret **`PIXIFY_TOKEN`**. On **`ubuntu-latest`**, Homebrew is not pre-installed: the workflow below installs Homebrew, then `libvips-dev` (apt), then `pixify-pro` (brew). It uses **`workflow_dispatch`** so you run it manually; uncomment `push` if you want it on every push to `main`. The last step commits optimized files back to the repo — **`permissions: contents: write`** is required for `git push`.
+
+You can paste this into `.github/workflows/optimize-images-pixify-pro.yml`.
 
 ```yaml
 name: Optimize images with Pixify Pro
 
 on:
-  push:
-    branches: [ main ]
+  # push:
+  #   branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   optimize:
     runs-on: ubuntu-latest
     env:
       PIXIFY_TOKEN: ${{ secrets.PIXIFY_TOKEN }}
-      PIXIFY_SERVER_URL: https://license.pixify.app
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
 
-      - name: Install Homebrew
+      - name: Set up Homebrew
         run: |
-          NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
           echo "/home/linuxbrew/.linuxbrew/sbin" >> $GITHUB_PATH
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew --version
 
-      - name: Tap and install Pixify Pro
+      - name: Install dependencies
         run: |
+          sudo apt-get install -y libvips-dev
           brew tap mahammed-gaber/pixify
           brew install pixify-pro
 
       - name: Run Pixify Pro
         run: |
+          pixify-pro -h
           pixify-pro -i ./assets -o ./assets-optimized -r --keep-structure
+
+      - name: Save optimized images
+        run: |
+          git config --global user.name "pixify-bot"
+          git config --global user.email "bot@getpixify.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit (all images already optimized)."
+          else
+            git commit -m "chore: auto-optimize images via Pixify Pro ⚡"
+            git push
+          fi
 ```
 
-**Note:** Add your Pro token as a repository secret named `PIXIFY_TOKEN` (Settings → Secrets and variables → Actions). If your server URL differs, set the `PIXIFY_SERVER_URL` secret or change the `env` value above.
+**Notes:** Add **`PIXIFY_TOKEN`** under **Settings → Secrets and variables → Actions**. If `git push` fails, check **branch protection** (allow GitHub Actions to push) and that **Workflow permissions** can write contents. Uncomment **`PIXIFY_SERVER_URL`** in `env` if your backend URL differs from the default in the Pro binary.
 
 #### Docker example
 
@@ -282,14 +304,22 @@ pixify-pro --help
 1. أنشئ رمز Pro من لوحة التحكم في [getpixify.com](https://getpixify.com).  
 2. عرّفه في متغير البيئة `PIXIFY_TOKEN` (أو كـ GitHub Secret في CI).
 
-#### مثال GitHub Actions
+#### مثال GitHub Actions (بالـ Token)
+
+أضف سر **`PIXIFY_TOKEN`** من **Settings → Secrets and variables → Actions**. على **`ubuntu-latest`** لا يوجد Homebrew جاهز: المثال أدناه يثبت Homebrew ثم `libvips-dev` ثم `pixify-pro`. التشغيل يدوي عبر **`workflow_dispatch`**؛ فعّل تعليق **`push`** إن أردت التشغيل عند كل دفع على `main`. الخطوة الأخيرة تعمل **commit** و**push** للصور المحسّنة — لازم **`permissions: contents: write`**.
+
+يمكن لصق YAML في `.github/workflows/optimize-images-pixify-pro.yml`.
 
 ```yaml
 name: Optimize images with Pixify Pro
 
 on:
-  push:
-    branches: [ main ]
+  # push:
+  #   branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   optimize:
@@ -298,17 +328,42 @@ jobs:
       PIXIFY_TOKEN: ${{ secrets.PIXIFY_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
 
-      - name: Install Pixify Pro via Homebrew
+      - name: Set up Homebrew
         run: |
+          echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
+          echo "/home/linuxbrew/.linuxbrew/sbin" >> $GITHUB_PATH
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew --version
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y libvips-dev
           brew tap mahammed-gaber/pixify
           brew install pixify-pro
 
       - name: Run Pixify Pro
         run: |
+          pixify-pro -h
           pixify-pro -i ./assets -o ./assets-optimized -r --keep-structure
+
+      - name: Save optimized images
+        run: |
+          git config --global user.name "pixify-bot"
+          git config --global user.email "bot@getpixify.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit (all images already optimized)."
+          else
+            git commit -m "chore: auto-optimize images via Pixify Pro ⚡"
+            git push
+          fi
 ```
+
+**ملاحظات:** إذا فشل **`git push`**، راجع **حماية الفرع** (السماح لـ GitHub Actions بالدفع) وصلاحيات **Workflow permissions** للكتابة على المحتوى. فعّل **`PIXIFY_SERVER_URL`** في `env` إذا كان عنوان الباكند مختلفاً.
 
 #### مثال Docker
 
