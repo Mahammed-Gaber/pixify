@@ -144,7 +144,7 @@ jobs:
           fi
 ```
 
-**Notes:** Add **`PIXIFY_TOKEN`** under **Settings → Secrets and variables → Actions**. If `git push` fails, check **branch protection** (allow GitHub Actions to push) and that **Workflow permissions** can write contents. Uncomment **`PIXIFY_SERVER_URL`** in `env` if your backend URL differs from the default in the Pro binary.
+**Notes:** Add **`PIXIFY_TOKEN`** under **Settings → Secrets and variables → Actions**. If `git push` fails, check **branch protection** (allow GitHub Actions to push) and that **Workflow permissions** can write contents.
 
 #### Docker example
 
@@ -359,7 +359,7 @@ jobs:
           fi
 ```
 
-**ملاحظات:** إذا فشل **`git push`**، راجع **حماية الفرع** (السماح لـ GitHub Actions بالدفع) وصلاحيات **Workflow permissions** للكتابة على المحتوى. فعّل **`PIXIFY_SERVER_URL`** في `env` إذا كان عنوان الباكند مختلفاً.
+**ملاحظات:** إذا فشل **`git push`**، راجع **حماية الفرع** (السماح لـ GitHub Actions بالدفع) وصلاحيات **Workflow permissions** للكتابة على المحتوى.
 
 #### مثال Docker
 
