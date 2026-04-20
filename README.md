@@ -177,7 +177,30 @@ For more details: **[Tokens and environments (Pro)](docs/pro/tokens-and-environm
 **Or via Homebrew (macOS/Linux):**
 ```bash
 brew install mahammed-gaber/pixify/pixify-free
+brew install mahammed-gaber/pixify/pixify-pro
 ```
+
+**Or via one-liner install script:**
+
+*Windows (PowerShell):*
+```powershell
+# Free (latest)
+irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1 | iex
+
+# Pro (latest)
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1'))) -Edition Pro
+```
+
+*macOS / Linux:*
+```bash
+# Free (latest)
+curl -fsSL https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.sh | bash
+
+# Pro (latest)
+curl -fsSL https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.sh | bash -s -- --edition pro
+```
+
+For optional flags (`-Version`, `-Force`, `-SkipVips` on Windows; `--version`, `--force`, `--no-path` on Linux/macOS), save the script locally and run it — see [install-libvips.md](./docs/install-libvips.md) for more.
 
 **Pixify Pro:** [getpixify.com](https://getpixify.com) | [Pricing](https://getpixify.com/pricing)
 
@@ -392,7 +415,30 @@ docker run --rm \
 **أو عبر Homebrew (macOS/Linux):**
 ```bash
 brew install mahammed-gaber/pixify/pixify-free
+brew install mahammed-gaber/pixify/pixify-pro
 ```
+
+**أو عبر سكربت تثبيت واحد:**
+
+*Windows (PowerShell):*
+```powershell
+# Free (أحدث إصدار)
+irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1 | iex
+
+# Pro (أحدث إصدار)
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1'))) -Edition Pro
+```
+
+*macOS / Linux:*
+```bash
+# Free (أحدث إصدار)
+curl -fsSL https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.sh | bash
+
+# Pro (أحدث إصدار)
+curl -fsSL https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.sh | bash -s -- --edition pro
+```
+
+لاستخدام خيارات إضافية (`-Version`، `-Force`، `-SkipVips` على Windows؛ `--version`، `--force`، `--no-path` على Linux/macOS)، احفظ السكربت محلياً وشغّله — راجع [دليل التثبيت](./docs/install-libvips.md).
 
 **Pixify Pro:** [getpixify.com](https://getpixify.com) | [الأسعار](https://getpixify.com/pricing)
 
