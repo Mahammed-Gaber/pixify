@@ -174,6 +174,26 @@ For more details: **[Tokens and environments (Pro)](docs/pro/tokens-and-environm
 | **macOS (Apple Silicon)** | [pixify-free-darwin-arm64.tar.gz](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/pixify-free-darwin-arm64.tar.gz) |
 | **macOS (Intel)** | [pixify-free-darwin-amd64.tar.gz](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/pixify-free-darwin-amd64.tar.gz) |
 
+**Or via Scoop (Windows):**
+```powershell
+# Add the bucket (first time only)
+scoop bucket add pixify https://github.com/Mahammed-Gaber/scoop-bucket
+
+# Install Free
+scoop install pixify/pixify-free
+
+# Install Pro
+scoop install pixify/pixify-pro
+
+# Update later
+scoop update pixify-free
+scoop update pixify-pro
+```
+
+> Scoop installs the binary under your Scoop apps folder and adds it to PATH automatically.  
+> libvips is not bundled — run `scoop bucket add extras && scoop install vips` or use the one-liner below.  
+> Scoop bucket: [github.com/Mahammed-Gaber/scoop-bucket](https://github.com/Mahammed-Gaber/scoop-bucket)
+
 **Or via Homebrew (macOS/Linux):**
 ```bash
 brew install mahammed-gaber/pixify/pixify-free
@@ -184,7 +204,7 @@ brew install mahammed-gaber/pixify/pixify-pro
 
 *Windows (PowerShell):*
 ```powershell
-# Free (latest)
+# Free (latest) — also installs libvips automatically
 irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1 | iex
 
 # Pro (latest)
@@ -226,6 +246,7 @@ For optional flags (`-Version`, `-Force`, `-SkipVips` on Windows; `--version`, `
 
 - **Help:** [GitHub Issues](https://github.com/Mahammed-Gaber/pixify/issues)
 - **Website and licensing:** [getpixify.com](https://getpixify.com) | [Pricing](https://getpixify.com/pricing)
+- **Install via Scoop (Windows):** [scoop-bucket](https://github.com/Mahammed-Gaber/scoop-bucket)
 - **Install via Homebrew (macOS/Linux):** [homebrew-pixify](https://github.com/Mahammed-Gaber/homebrew-pixify)
 - **libvips:** [Official documentation](https://www.libvips.org/)
 
@@ -412,6 +433,26 @@ docker run --rm \
 | **macOS (Apple Silicon)** | [pixify-free-darwin-arm64.tar.gz](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/pixify-free-darwin-arm64.tar.gz) |
 | **macOS (Intel)** | [pixify-free-darwin-amd64.tar.gz](https://github.com/Mahammed-Gaber/pixify/releases/download/v1.0.0/pixify-free-darwin-amd64.tar.gz) |
 
+**أو عبر Scoop (Windows):**
+```powershell
+# إضافة الـ bucket (مرة واحدة فقط)
+scoop bucket add pixify https://github.com/Mahammed-Gaber/scoop-bucket
+
+# تثبيت Free
+scoop install pixify/pixify-free
+
+# تثبيت Pro
+scoop install pixify/pixify-pro
+
+# التحديث لاحقاً
+scoop update pixify-free
+scoop update pixify-pro
+```
+
+> Scoop يثبّت البرنامج تحت مجلد التطبيقات الخاص به ويضيفه إلى PATH تلقائياً.  
+> libvips غير مدمج — شغّل `scoop bucket add extras && scoop install vips` أو استخدم سكربت التثبيت أدناه.  
+> الـ bucket: [github.com/Mahammed-Gaber/scoop-bucket](https://github.com/Mahammed-Gaber/scoop-bucket)
+
 **أو عبر Homebrew (macOS/Linux):**
 ```bash
 brew install mahammed-gaber/pixify/pixify-free
@@ -422,7 +463,7 @@ brew install mahammed-gaber/pixify/pixify-pro
 
 *Windows (PowerShell):*
 ```powershell
-# Free (أحدث إصدار)
+# Free (أحدث إصدار) — يثبّت libvips تلقائياً أيضاً
 irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1 | iex
 
 # Pro (أحدث إصدار)
@@ -464,6 +505,7 @@ curl -fsSL https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-
 
 - **المساعدة:** [GitHub Issues](https://github.com/Mahammed-Gaber/pixify/issues)
 - **الموقع والترخيص:** [getpixify.com](https://getpixify.com) | [الأسعار](https://getpixify.com/pricing)
+- **تثبيت عبر Scoop (Windows):** [scoop-bucket](https://github.com/Mahammed-Gaber/scoop-bucket)
 - **تثبيت عبر Homebrew (macOS/Linux):** [homebrew-pixify](https://github.com/Mahammed-Gaber/homebrew-pixify)
 - **libvips:** [التوثيق الرسمي](https://www.libvips.org/)
 
