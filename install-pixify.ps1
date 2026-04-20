@@ -50,12 +50,16 @@ param(
     [switch] $SkipVips
 )
 
-# `irm ... | iex` cannot pass -Edition; use PIXIFY_EDITION=Pro|Free when not set on the command line.
+# `irm ... | iex` cannot pass -Edition; use PIXIFY_EDITION=Pro|Free as a one-shot prefix:
+#   $env:PIXIFY_EDITION = 'Pro'; irm ... | iex
+# The variable is consumed and cleared immediately so it won't affect the next run.
 if (-not $PSBoundParameters.ContainsKey('Edition') -and $env:PIXIFY_EDITION) {
     $raw = $env:PIXIFY_EDITION.Trim()
     if ($raw -match '^(?i)pro$') { $Edition = 'Pro' }
     elseif ($raw -match '^(?i)free$') { $Edition = 'Free' }
 }
+# Clear after reading so the variable doesn't leak into subsequent runs in the same session.
+Remove-Item Env:\PIXIFY_EDITION -ErrorAction SilentlyContinue
 
 $ErrorActionPreference = "Stop"
 
