@@ -31,7 +31,9 @@
   irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1 | iex
 
 .EXAMPLE
-  # Install Pro (latest):
+  # Install Pro (latest) — same style as Free; env var because iex cannot pass -Edition:
+  $env:PIXIFY_EDITION = 'Pro'; irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1 | iex
+  # OR — same pattern; PIXIFY_EDITION because `| iex` cannot pass -Edition Pro
   & ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1'))) -Edition Pro
 
 .EXAMPLE
@@ -47,6 +49,13 @@ param(
     [switch] $Force,
     [switch] $SkipVips
 )
+
+# `irm ... | iex` cannot pass -Edition; use PIXIFY_EDITION=Pro|Free when not set on the command line.
+if (-not $PSBoundParameters.ContainsKey('Edition') -and $env:PIXIFY_EDITION) {
+    $raw = $env:PIXIFY_EDITION.Trim()
+    if ($raw -match '^(?i)pro$') { $Edition = 'Pro' }
+    elseif ($raw -match '^(?i)free$') { $Edition = 'Free' }
+}
 
 $ErrorActionPreference = "Stop"
 
@@ -126,7 +135,8 @@ if ($existing -and -not $Force) {
         Write-Host "Pixify $Edition v$Version is already installed." -ForegroundColor Green
         Write-Host "  $($existing.FullName)" -ForegroundColor DarkGray
         Write-Host "Run with -Force to reinstall, or -Version x.y.z for a different version." -ForegroundColor DarkGray
-        exit 0
+        # Use `return` — not `exit` — so the host window stays open (exit closes the whole PowerShell session).
+        return
     }
     Write-Host "Installed: v$installedVer — upgrading to v$Version..." -ForegroundColor Yellow
 }

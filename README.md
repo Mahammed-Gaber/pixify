@@ -209,6 +209,9 @@ irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.
 
 # Pro (latest)
 & ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1'))) -Edition Pro
+
+# OR — same pattern; PIXIFY_EDITION because `| iex` cannot pass -Edition Pro
+$env:PIXIFY_EDITION = 'Pro'; irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1 | iex
 ```
 
 *macOS / Linux:*
@@ -468,6 +471,9 @@ irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.
 
 # Pro (أحدث إصدار)
 & ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1'))) -Edition Pro
+
+# OR نفس الأسلوب؛ PIXIFY_EDITION لأن `| iex` لا يمرّر -Edition
+$env:PIXIFY_EDITION = 'Pro'; irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-pixify.ps1 | iex
 ```
 
 *macOS / Linux:*
