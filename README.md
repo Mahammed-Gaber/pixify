@@ -249,6 +249,7 @@ For optional flags (`-Version`, `-Force`, `-SkipVips` on Windows; `--version`, `
 
 - **Help:** [GitHub Issues](https://github.com/Mahammed-Gaber/pixify/issues)
 - **Website and licensing:** [getpixify.com](https://getpixify.com) | [Pricing](https://getpixify.com/pricing)
+- **Legal (EULA):** [EULA.md](./EULA.md) | [Download PDF](./EULA.pdf)
 - **Install via Scoop (Windows):** [scoop-bucket](https://github.com/Mahammed-Gaber/scoop-bucket)
 - **Install via Homebrew (macOS/Linux):** [homebrew-pixify](https://github.com/Mahammed-Gaber/homebrew-pixify)
 - **libvips:** [Official documentation](https://www.libvips.org/)
@@ -511,6 +512,7 @@ curl -fsSL https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-
 
 - **المساعدة:** [GitHub Issues](https://github.com/Mahammed-Gaber/pixify/issues)
 - **الموقع والترخيص:** [getpixify.com](https://getpixify.com) | [الأسعار](https://getpixify.com/pricing)
+- **اتفاقية الاستخدام (EULA):** [EULA.md](./EULA.md) | [تحميل PDF](./EULA.pdf)
 - **تثبيت عبر Scoop (Windows):** [scoop-bucket](https://github.com/Mahammed-Gaber/scoop-bucket)
 - **تثبيت عبر Homebrew (macOS/Linux):** [homebrew-pixify](https://github.com/Mahammed-Gaber/homebrew-pixify)
 - **libvips:** [التوثيق الرسمي](https://www.libvips.org/)
