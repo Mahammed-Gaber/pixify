@@ -159,11 +159,7 @@ if (-not $SkipVips) {
                 -Uri "https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-vips.ps1" `
                 -UseBasicParsing
             $installVips = [scriptblock]::Create($vipsScript)
-            if ($Edition -eq "Pro") {
-                & $installVips -AllBuild
-            } else {
-                & $installVips
-            }
+            & $installVips
         } catch {
             Write-Warning "libvips install failed: $($_.Exception.Message)"
             Write-Host "  Install libvips manually after Pixify completes:" -ForegroundColor Yellow

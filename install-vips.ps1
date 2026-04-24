@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-  Downloads libvips (web build) for Windows 64-bit and adds it to the user PATH.
+  Downloads libvips for Windows 64-bit and adds it to the user PATH.
 
 .DESCRIPTION
   Uses a fast download path when possible:
@@ -13,13 +13,14 @@
   Skips re-download / re-extract if the same version is already present.
 
 .NOTES
-  Pixify Free/Pro on Windows need vips DLLs on PATH. The "web" zip (~11 MB) is enough for Free WebP;
-  use -AllBuild for the larger "all" formats build if needed.
+  Pixify Free/Pro on Windows need vips DLLs on PATH.
+  Default behavior installs the "all" build so one shared runtime works for both editions.
+  Use -WebBuild only if you explicitly want the smaller package.
 #>
 
 param(
     [string] $VipsVersion = "8.18.2",
-    [switch] $AllBuild,
+    [switch] $WebBuild,
     [switch] $Force
 )
 
@@ -30,7 +31,7 @@ try {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 } catch { }
 
-$kind = if ($AllBuild) { "all" } else { "web" }
+$kind = if ($WebBuild) { "web" } else { "all" }
 $url = "https://github.com/libvips/build-win64-mxe/releases/download/v$VipsVersion/vips-dev-x64-$kind-$VipsVersion.zip"
 $installRoot = Join-Path $env:USERPROFILE ".pixify\vips"
 $zipFile = Join-Path $env:TEMP "vips-dev-x64-$kind-$VipsVersion.zip"
