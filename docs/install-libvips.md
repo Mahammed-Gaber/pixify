@@ -16,13 +16,13 @@ Pixify Free requires the `libvips` library to run image conversion operations. T
 
 1. Download the latest version from [libvips Windows builds](https://github.com/libvips/build-win64-mxe/releases)
 
-   **Direct download links (v8.18.0):**
+   **Direct download links (v8.18.2):**
    
-   - **Web version (recommended for Pixify):** [vips-dev-w64-web-8.18.0.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.0/vips-dev-w64-web-8.18.0.zip) - ~11 MB
+   - **Web version (recommended for Pixify):** [vips-dev-w64-web-8.18.2.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.2/vips-dev-x64-web-8.18.2.zip) - ~11 MB
      - Contains WebP support (sufficient for Pixify Free)
      - Smaller size and faster download
    
-   - **Full version (optional):** [vips-dev-w64-all-8.18.0.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.0/vips-dev-w64-all-8.18.0.zip) - ~20 MB
+   - **Full version (optional):** [vips-dev-w64-all-8.18.2.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.2/vips-dev-x64-all-8.18.2.zip) - ~20 MB
      - Contains all formats and full support
      - Use if you need additional format support
 
@@ -55,7 +55,7 @@ irm https://raw.githubusercontent.com/Mahammed-Gaber/pixify/main/install-vips.ps
 & "$env:TEMP\install-vips.ps1" -AllBuild
 ```
 
-Examples: `-AllBuild` (larger “all” formats zip), `-Force` (reinstall), `-VipsVersion 8.18.0` (pin version).
+Examples: `-AllBuild` (larger “all” formats zip), `-Force` (reinstall), `-VipsVersion 8.18.2` (pin version).
 
 Then open a **new** terminal and run `vips --version`.
 
@@ -87,7 +87,7 @@ vips --version
 
 ```bash
 sudo apt update
-sudo apt install libvips-dev
+sudo apt install libvips
 ```
 
 ### Fedora / RHEL / CentOS
@@ -160,8 +160,8 @@ sudo apt install pkg-config
 
 ### Linux: "libvips not found"
 
-- Make sure you installed `libvips-dev` and not just `libvips`
-- On Ubuntu/Debian: `sudo apt install libvips-dev`
+- Make sure you installed `libvips` and not just `libvips`
+- On Ubuntu/Debian: `sudo apt install libvips`
 - On Fedora: `sudo dnf install vips-devel`
 
 ### macOS: "vips: command not found"
@@ -216,11 +216,11 @@ Pixify Free يتطلب مكتبة `libvips` لتشغيل عمليات تحويل
 
    **روابط تحميل مباشرة (v8.18.0):**
    
-   - **نسخة Web (موصى بها لـ Pixify):** [vips-dev-w64-web-8.18.0.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.0/vips-dev-w64-web-8.18.0.zip) - ~11 MB
+   - **نسخة Web (موصى بها لـ Pixify):** [vips-dev-x64-web-8.18.2.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.2/vips-dev-x64-web-8.18.0.zip) - ~11 MB
      - تحتوي على دعم WebP (كافية لـ Pixify Free)
      - حجم أصغر وأسرع في التحميل
    
-   - **نسخة كاملة (اختياري):** [vips-dev-w64-all-8.18.0.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.0/vips-dev-w64-all-8.18.0.zip) - ~20 MB
+   - **نسخة كاملة (اختياري):** [vips-dev-w64-all-8.18.2.zip](https://github.com/libvips/build-win64-mxe/releases/download/v8.18.2/vips-dev-x64-all-8.18.2.zip) - ~20 MB
      - تحتوي على جميع الصيغ والدعم الكامل
      - استخدمها إذا كنت تحتاج دعم صيغ إضافية
 
@@ -285,7 +285,7 @@ vips --version
 
 ```bash
 sudo apt update
-sudo apt install libvips-dev
+sudo apt install libvips
 ```
 
 ### Fedora / RHEL / CentOS
@@ -359,7 +359,7 @@ sudo apt install pkg-config
 ### Linux: "libvips not found"
 
 - تأكد من تثبيت `libvips-dev` وليس فقط `libvips`
-- على Ubuntu/Debian: `sudo apt install libvips-dev`
+- على Ubuntu/Debian: `sudo apt install libvips`
 - على Fedora: `sudo dnf install vips-devel`
 
 ### macOS: "vips: command not found"

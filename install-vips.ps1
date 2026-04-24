@@ -18,7 +18,7 @@
 #>
 
 param(
-    [string] $VipsVersion = "8.18.0",
+    [string] $VipsVersion = "8.18.2",
     [switch] $AllBuild,
     [switch] $Force
 )
@@ -31,9 +31,9 @@ try {
 } catch { }
 
 $kind = if ($AllBuild) { "all" } else { "web" }
-$url = "https://github.com/libvips/build-win64-mxe/releases/download/v$VipsVersion/vips-dev-w64-$kind-$VipsVersion.zip"
+$url = "https://github.com/libvips/build-win64-mxe/releases/download/v$VipsVersion/vips-dev-x64-$kind-$VipsVersion.zip"
 $installRoot = Join-Path $env:USERPROFILE ".pixify\vips"
-$zipFile = Join-Path $env:TEMP "vips-dev-w64-$kind-$VipsVersion.zip"
+$zipFile = Join-Path $env:TEMP "vips-dev-x64-$kind-$VipsVersion.zip"
 
 # Resolved after extract (or on re-run when already installed)
 $script:extractedBin = $null

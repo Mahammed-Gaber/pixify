@@ -305,7 +305,7 @@ For optional flags (`-Version`, `-Force`, `-SkipVips` on Windows; `--version`, `
 
 ```bash
 # Linux
-sudo apt install libvips-dev
+sudo apt install libvips
 
 # macOS
 brew install vips
@@ -351,7 +351,7 @@ pixify-pro --help
 
 #### مثال GitHub Actions (بالـ Token)
 
-أضف سر **`PIXIFY_TOKEN`** من **Settings → Secrets and variables → Actions**. على **`ubuntu-latest`** لا يوجد Homebrew جاهز: المثال أدناه يثبت Homebrew ثم `libvips-dev` ثم `pixify-pro`. التشغيل يدوي عبر **`workflow_dispatch`**؛ فعّل تعليق **`push`** إن أردت التشغيل عند كل دفع على `main`. الخطوة الأخيرة تعمل **commit** و**push** للصور المحسّنة — لازم **`permissions: contents: write`**.
+أضف سر **`PIXIFY_TOKEN`** من **Settings → Secrets and variables → Actions**. على **`ubuntu-latest`** لا يوجد Homebrew جاهز: المثال أدناه يثبت Homebrew ثم `libvips` ثم `pixify-pro`. التشغيل يدوي عبر **`workflow_dispatch`**؛ فعّل تعليق **`push`** إن أردت التشغيل عند كل دفع على `main`. الخطوة الأخيرة تعمل **commit** و**push** للصور المحسّنة — لازم **`permissions: contents: write`**.
 
 يمكن لصق YAML في `.github/workflows/optimize-images-pixify-pro.yml`.
 
@@ -384,7 +384,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install -y libvips-dev
+          sudo apt-get install -y libvips
           brew tap mahammed-gaber/pixify
           brew install pixify-pro
 
